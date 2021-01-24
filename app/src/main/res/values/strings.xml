@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TarAvaz</string>
     <string name="home">Home</string>
+    <string name="genre">Genre</string>
 </resources>
