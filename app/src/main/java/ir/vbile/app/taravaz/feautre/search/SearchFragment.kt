@@ -1,4 +1,4 @@
-package ir.vbile.app.taravaz.feautre.search
+package ir.vbile.app.taravaz.feautre.searchGenreFragment
 
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazFragment
