@@ -3,6 +3,7 @@ package ir.vbile.app.taravaz.feautre.main
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazActivity
