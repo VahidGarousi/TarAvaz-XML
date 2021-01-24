@@ -13,9 +13,10 @@
         android:layout_marginBottom="56dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
         android:id="@+id/bottomNavigationMain"
+        android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_gravity="bottom" />
+        android:layout_gravity="bottom"
+        app:menu="@menu/main_menu" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
