@@ -3,20 +3,21 @@
     package="ir.vbile.app.taravaz">
 
     <application
-        android:name="ir.vbile.app.taravaz.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TarAvaz">
-        <activity android:name=".feautre.main.MainActivity">
+        <activity android:name=".feautre.splash.SplashActivity" android:theme="@style/Theme.TarAvaz">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".feautre.main.MainActivity" />
     </application>
 
 </manifest>
