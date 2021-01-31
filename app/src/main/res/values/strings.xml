@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TarAvaz</string>
+    <string name="home">صفحه اصلی</string>
+    <string name="genre">دسته بندی</string>
+    <string name="search">جستجو</string>
+    <string name="music">ترانه ها</string>
+    <string name="artist">هنرمندان</string>
+    <string name="persian_app_name">ترآواز</string>
+    <string name="app_description">مرجعی کامل برای دسترسی به موسیقی و ترانه های ایرانی</string>
+    <string name="version_name">نسخه ۱</string>
 </resources>

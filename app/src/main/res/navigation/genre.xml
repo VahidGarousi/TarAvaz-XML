@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/genre"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        tools:layout="@layout/fragment_genre"
+        android:id="@+id/genreFragment"
+        android:name="ir.vbile.app.taravaz.feautre.genre.GenreFragment"
+        android:label="GenreFragment" />
+    <fragment
+        tools:layout="@layout/fragment_splash"
+        android:id="@+id/splashFragment"
+        android:name="ir.vbile.app.taravaz.feautre.splash.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_genreFragment"
+            app:destination="@id/genreFragment" />
+    </fragment>
+</navigation>
