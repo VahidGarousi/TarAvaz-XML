@@ -1,9 +1,11 @@
 package ir.vbile.app.taravaz.common
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -29,6 +31,14 @@ interface TarAvazView {
             }
         }
     }
+    fun setUpViews(view: View) = view.apply { }
+
+    fun longToast(string: String) {
+        Toast.makeText(viewContext, string, Toast.LENGTH_LONG).show()
+    }
+    fun toast(string: Int) {
+        Toast.makeText(viewContext, string, Toast.LENGTH_SHORT).show()
+    }
 }
 
 abstract class TarAvazFragment(
@@ -39,6 +49,11 @@ abstract class TarAvazFragment(
 
     override val viewContext: Context?
         get() = context
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpViews(view)
+    }
 }
 
 abstract class TarAvazActivity(

@@ -12,6 +12,4 @@ class TarAvazNavigationView : BottomNavigationView {
         attrs,
         defStyleAttr
     )
-
-
 }
