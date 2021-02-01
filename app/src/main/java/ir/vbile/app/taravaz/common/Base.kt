@@ -1,7 +1,6 @@
 package ir.vbile.app.taravaz.common
 
 import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +13,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ir.vbile.app.taravaz.R
+import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 
 interface TarAvazView {
     val rootView: CoordinatorLayout?
@@ -31,11 +32,11 @@ interface TarAvazView {
             }
         }
     }
-    fun setUpViews(view: View) = view.apply { }
 
     fun longToast(string: String) {
         Toast.makeText(viewContext, string, Toast.LENGTH_LONG).show()
     }
+
     fun toast(string: Int) {
         Toast.makeText(viewContext, string, Toast.LENGTH_SHORT).show()
     }
@@ -50,9 +51,15 @@ abstract class TarAvazFragment(
     override val viewContext: Context?
         get() = context
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setUpViews(view)
+
+    fun showBackBtn(shouldShow: Boolean) {
+        rootView?.let {
+            viewContext?.let { _ ->
+                val toolBar = requireActivity().toolbar
+                toolBar?.showBackBtn(shouldShow)
+                Timber.i("")
+            }
+        }
     }
 }
 
@@ -76,6 +83,6 @@ abstract class TarAvazActivity(
 
 }
 
-abstract class TarAvazViewModel() : ViewModel(){
+abstract class TarAvazViewModel() : ViewModel() {
     var progressBarLiveData: MutableLiveData<Boolean> = MutableLiveData()
 }

@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".feautre.main.MainActivity">
 
+    <ir.vbile.app.taravaz.view.TarAvazToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ta_title="@string/home" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationMain"
         android:layout_width="match_parent"
@@ -14,9 +20,10 @@
         app:menu="@menu/main_menu" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/nav_host_container"
+        android:id="@+id/navHostContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
         android:layout_marginBottom="56dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
