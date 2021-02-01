@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="dividerColor" format="color" />
-    <declare-styleable name="RahaKishToolbar">
-        <attr name="rk_title" format="string" />
+    <declare-styleable name="TarAvazToolbar">
+        <attr name="ta_title" format="string" />
+        <attr name="ta_shouldShowBackBtn" format="boolean" />
     </declare-styleable>
 </resources>
