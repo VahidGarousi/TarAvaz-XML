@@ -37,7 +37,7 @@ interface TarAvazView {
         Toast.makeText(viewContext, string, Toast.LENGTH_LONG).show()
     }
 
-    fun toast(string: Int) {
+    fun toast(string: String) {
         Toast.makeText(viewContext, string, Toast.LENGTH_SHORT).show()
     }
 }
