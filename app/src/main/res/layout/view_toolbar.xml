@@ -23,6 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textAppearance="?textAppearanceHeadline6"
-        android:textFontWeight="700"
+        android:textFontWeight="900"
         tools:text="نام صفحه" />
 </FrameLayout>

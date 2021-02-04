@@ -28,7 +28,7 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
         val compositePageTransformer = CompositePageTransformer()
         compositePageTransformer.addTransformer(MarginPageTransformer(40))
         compositePageTransformer.addTransformer { page, position ->
-            val r = 1 - abs(position)
+            val r = 0.3f - abs(position)
             page.scaleY = 0.85f + r * 0.15f
         }
         bannerSlider.setPageTransformer(compositePageTransformer)
@@ -70,6 +70,7 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
                 lp.height = bannerSliderHeight
                 layoutParams = lp
             }
+            bannerSlider.currentItem = 1
         }
     }
 }
