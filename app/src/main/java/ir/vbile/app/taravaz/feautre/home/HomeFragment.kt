@@ -1,7 +1,10 @@
 package ir.vbile.app.taravaz.feautre.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
+import androidx.core.os.HandlerCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
@@ -17,6 +20,7 @@ import kotlin.math.abs
 class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
     val vm: HomeVM by viewModel()
     lateinit var bannerSliderAdapter: BannerSliderAdapter
+    val sliderHandler: Handler = HandlerCompat.createAsync(Looper.getMainLooper())
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeToObservers()
@@ -28,11 +32,22 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
             page.scaleY = 0.85f + r * 0.15f
         }
         bannerSlider.setPageTransformer(compositePageTransformer)
+        bannerSlider.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                sliderHandler.removeCallbacks(sliderRunnable)
+                sliderHandler.postDelayed(sliderRunnable, 3000)
+            }
+        })
+    }
+
+    private val sliderRunnable = Runnable {
+        bannerSlider.currentItem = bannerSlider.currentItem + 1
     }
 
     private fun subscribeToObservers() {
         vm.banners.observe(viewLifecycleOwner) {
-            bannerSliderAdapter = BannerSliderAdapter(this,it)
+            bannerSliderAdapter = BannerSliderAdapter(this, it)
             bannerSlider.apply {
                 offscreenPageLimit = 3
                 adapter = bannerSliderAdapter
