@@ -13,7 +13,7 @@ class SplashFragment : TarAvazFragment(R.layout.fragment_splash) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         GlobalScope.launch {
-            delay(500)
+            delay(1500)
             findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
         }
     }
