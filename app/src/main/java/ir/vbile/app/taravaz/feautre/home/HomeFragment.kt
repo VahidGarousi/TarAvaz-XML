@@ -45,9 +45,19 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
         bannerSlider.currentItem = bannerSlider.currentItem + 1
     }
 
+    override fun onPause() {
+        super.onPause()
+        sliderHandler.removeCallbacks(sliderRunnable)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sliderHandler.postDelayed(sliderRunnable, 3000)
+    }
+
     private fun subscribeToObservers() {
         vm.banners.observe(viewLifecycleOwner) {
-            bannerSliderAdapter = BannerSliderAdapter(this, it)
+            bannerSliderAdapter = BannerSliderAdapter(this, bannerSlider, it.toMutableList())
             bannerSlider.apply {
                 offscreenPageLimit = 3
                 adapter = bannerSliderAdapter
@@ -60,7 +70,6 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
                 lp.height = bannerSliderHeight
                 layoutParams = lp
             }
-            sliderIndicator.setViewPager2(bannerSlider)
         }
     }
 }
