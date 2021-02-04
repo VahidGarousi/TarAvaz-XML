@@ -21,9 +21,24 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
     val vm: HomeVM by viewModel()
     lateinit var bannerSliderAdapter: BannerSliderAdapter
     val sliderHandler: Handler = HandlerCompat.createAsync(Looper.getMainLooper())
+    val trackAdapter = TrackAdapter()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeToObservers()
+        setUpSlider()
+        setUpTrackAdapter()
+        btnViewAll.setOnClickListener {
+            longToast("مشاهده همه")
+        }
+    }
+
+    private fun setUpTrackAdapter() {
+        rvItems.apply {
+            adapter = trackAdapter
+        }
+    }
+
+    private fun setUpSlider() {
         bannerSlider.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         val compositePageTransformer = CompositePageTransformer()
         compositePageTransformer.addTransformer(MarginPageTransformer(40))
@@ -71,6 +86,9 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
                 layoutParams = lp
             }
             bannerSlider.currentItem = 1
+        }
+        vm.tracks.observe(viewLifecycleOwner) {
+            trackAdapter.submitList(it)
         }
     }
 }
