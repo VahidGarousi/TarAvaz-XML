@@ -48,9 +48,9 @@ class ArtistsView @JvmOverloads constructor(
                     BirLayoutManager.Staggered -> StaggeredGridLayoutManager(2, orientation.value)
                 }
                 rvItems.layoutManager = layoutManager
-                val springAnimationTraitStatus =
-                    getBoolean(R.styleable.TrackView_tv_springAnimationTraitStatus, false)
+                val springAnimationTraitStatus = getBoolean(R.styleable.TrackView_tv_springAnimationTraitStatus, false)
                 artistAdapter = ArtistAdapter(layout, springAnimationTraitStatus)
+                rvItems.adapter = artistAdapter
             } finally {
                 recycle()
             }

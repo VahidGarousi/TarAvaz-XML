@@ -3,6 +3,7 @@ package ir.vbile.app.taravaz.common
 import io.reactivex.Single
 import ir.vbile.app.taravaz.App
 import ir.vbile.app.taravaz.R
+import ir.vbile.app.taravaz.data.Artist
 import ir.vbile.app.taravaz.data.Banner
 import ir.vbile.app.taravaz.data.Track
 import java.util.*
@@ -142,5 +143,19 @@ object DataFactory {
             "راغب",
             "https://sedabaran.ir/wp-content/webp-express/webp-images/uploads/2021/01/ragheb_avareh.jpg.webp"
         )
+    )
+
+    fun getSuggestedArtist(): List<Artist> = listOf(
+        Artist(1,"رضا بهرام","https://smusic.ir/wp-content/uploads/2019/03/Reza-Bahram-Shabhaye-bad.jpg","عاشقانه"),
+        Artist(1,"حجت اشرف زاده","https://www.parsnaz.com/images/2019/12/864598060-parsnaz-com.jpg","عاشقانه"),
+        Artist(1,"محسن ابراهیم زاده","https://files.namnak.com/users/fm/aup/202008/579_pics/%D9%85%D8%AD%D8%B3%D9%86-%D8%A7%D8%A8%D8%B1%D8%A7%D9%87%DB%8C%D9%85-%D8%B2%D8%A7%D8%AF%D9%87.jpg","عاشقانه"),
+        Artist(1,"راغب","https://saednews.com/storage/media-center/images/ac-image-jk1599639239rx.jpeg","عاشقانه"),
+        Artist(1,"محسن چاوشی","https://cdn.yjc.ir/files/fa/news/1398/9/23/11029114_247.jpg","عاشقانه"),
+        Artist(1,"محسن یگانه","https://dl.fars2nes.com/mohsen%20yeganeh/yeganeh.jpg","عاشقانه"),
+        Artist(1,"فرزاد فرزین","http://sv2.mybia2music.com/s2/Music/1399/07/13/02/Farzad%20Farzin%20-%20Jaye%20To%20Khaliye.jpg","عاشقانه"),
+        Artist(1,"گرشا رضایی","https://pbs.twimg.com/profile_images/1246537718735265792/YDO2BHoo_400x400.jpg","عاشقانه"),
+        Artist(1,"ستین","https://www.beytoote.com/images/stories/art/singer-stein02-4.jpg","عاشقانه"),
+        Artist(1,"احلام","https://photokade.com/wp-content/uploads/ahlammusic-photokade-com-6.jpg","عاشقانه"),
+        Artist(1,"شادمهر عقیلی","https://i.scdn.co/image/b33199dca20bc7118600ac6ab465d3d7ecf78f96","عاشقانه"),
     )
 }

@@ -5,13 +5,17 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import com.facebook.drawee.backends.pipeline.Fresco
+import ir.vbile.app.taravaz.data.repo.demo.DemoArtistRepository
 import ir.vbile.app.taravaz.data.repo.demo.DemoBannerRepositoryImpl
 import ir.vbile.app.taravaz.data.repo.demo.DemoTrackRepositoryImpl
+import ir.vbile.app.taravaz.data.repo.impl.ArtistRepositoryImpl
 import ir.vbile.app.taravaz.data.repo.impl.BannerRepositoryImpl
 import ir.vbile.app.taravaz.data.repo.impl.TrackRepositoryImpl
+import ir.vbile.app.taravaz.data.repo.source.ArtistRemoteDataSource
 import ir.vbile.app.taravaz.data.repo.source.BannerRemoteDataSource
 import ir.vbile.app.taravaz.data.repo.source.TrackRemoteDataSource
 import ir.vbile.app.taravaz.feautre.home.HomeVM
+import ir.vbile.app.taravaz.feautre.search.SearchVM
 import ir.vbile.app.taravaz.feautre.track.TrackVM
 import ir.vbile.app.taravaz.services.FrescoImageLoadingServiceImpl
 import ir.vbile.app.taravaz.services.ImageLoadingService
@@ -42,8 +46,15 @@ class App : Application() {
                 } else
                     TrackRepositoryImpl(TrackRemoteDataSource(get()))
             }
+            factory {
+                if (BuildConfig.DEMO_MODE)
+                    DemoArtistRepository()
+                else
+                    ArtistRepositoryImpl(ArtistRemoteDataSource(get()))
+            }
             viewModel { HomeVM(get(), get()) }
             viewModel { (sort: Int) -> TrackVM(get(), sort) }
+            viewModel { SearchVM(get()) }
         }
         startKoin {
             androidContext(this@App)
