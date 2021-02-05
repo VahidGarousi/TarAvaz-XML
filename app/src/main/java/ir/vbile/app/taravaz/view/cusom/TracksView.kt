@@ -1,4 +1,4 @@
-package ir.vbile.app.taravaz.view.item
+package ir.vbile.app.taravaz.view.cusom
 
 import android.content.Context
 import android.util.AttributeSet
@@ -11,7 +11,7 @@ import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.extentions.getEnum
 import ir.vbile.app.taravaz.feautre.home.TrackAdapter
-import kotlinx.android.synthetic.main.base_item_row.view.*
+import kotlinx.android.synthetic.main.track_base_row.view.*
 
 class BaseItemRow @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -24,7 +24,7 @@ class BaseItemRow @JvmOverloads constructor(
 
     init {
         // inflate the layout into "this" component
-        inflate(context, R.layout.base_item_row, this)
+        inflate(context, R.layout.track_base_row, this)
         context.obtainStyledAttributes(attrs, R.styleable.BaseItemRow).apply {
             try {
                 val title = getString(R.styleable.BaseItemRow_bir_rowTitle)
@@ -36,7 +36,7 @@ class BaseItemRow @JvmOverloads constructor(
                     it.text = title ?: context.getString(R.string.newest_songs)
                 }
                 val layout =
-                    getResourceId(R.styleable.BaseItemRow_bir_viewType, R.layout.item_song_type1)
+                    getResourceId(R.styleable.BaseItemRow_bir_viewType, R.layout.item_track_type1)
                 val orientation =
                     getEnum(R.styleable.BaseItemRow_bir_orientation, BirOrientation.Vertical)
                 val layoutManager = when (getEnum(
