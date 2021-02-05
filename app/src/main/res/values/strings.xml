@@ -8,4 +8,34 @@
     <string name="persian_app_name">ترآواز</string>
     <string name="app_description">مرجعی کامل برای دسترسی به موسیقی و ترانه های ایرانی</string>
     <string name="version_name">نسخه ۱</string>
+    <string name="newest_songs">جدیدترین‌ترانه‌ها</string>
+    <string name="viewAll">همه</string>
+    <string name="song_name">گل مریم</string>
+    <string name="gole_maryam_lyric">ای گل مریم خوابتو دیدم باز توی رویایی دلنشین و دلباز
+گفتم از عشق و ساده خندیدی میوه ی عشقو از دلم چیدی
+اما یک لحظه بی تو بارون شد فهمیدم خوابم دنیام زندون شد
+این گل مال منه دست به شاخه هاش نزنید
+این گل مال منه از گلبرگاش دل بکنید
+این گل مال منه دست به شاخه هاش نزنید
+این گل مال منه از گلبرگاش دل بکنید
+دانلود آهنگ رضا بهرام گل مریم
+این بار که میای بارونو بیار رو شونه ی من تو خونه ی درداتو بذار
+درداتو بذار رو شونه ی من شاید که خزون رفتش بی نشون از باغ بهار
+این گل مال منه دست به شاخه هاش نزنید
+این گل مال منه از گلبرگاش دل بکنید
+این گل مال منه دست به شاخه هاش نزنید
+این گل مال منه از گلبرگاش دل بکنید
+این گل مال منه دست به شاخه هاش نزنید
+این گل مال منه از گلبرگاش دل بکنید</string>
+    <string name="gole_maryam_title">گل مریم</string>
+    <string name="gole_maryam_url">http://dl.tabamusic.com/Music/1399/09/Reza%20Bahram%20-%20Gole%20Maryam.mp3</string>
+    <string-array name="genres">
+        <item>عاشقانه</item>
+        <item>ماشین</item>
+        <item>غمگین</item>
+    </string-array>
+    <string name="genre_love">عاشقانه</string>
+    <string name="reza_bahram">رضا بهرام</string>
+    <string name="mohammad_alizadeh">محمد علیزاده</string>
+    <string name="popular_songs">محبوب‌ترین ترانه‌ها</string>
 </resources>

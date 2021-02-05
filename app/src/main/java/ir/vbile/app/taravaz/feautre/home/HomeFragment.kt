@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazFragment
 import ir.vbile.app.taravaz.extentions.convertDpToPixel
+import kotlinx.android.synthetic.main.base_item_row.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.math.abs
@@ -24,6 +25,21 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeToObservers()
+        setUpSlider()
+        setUpTrackAdapter()
+        rowNewest.btnViewAll.setOnClickListener {
+            longToast("مشاهده همه")
+        }
+        rowPopular.btnViewAll.setOnClickListener {
+            longToast("همه مشاهده")
+        }
+    }
+
+    private fun setUpTrackAdapter() {
+
+    }
+
+    private fun setUpSlider() {
         bannerSlider.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         val compositePageTransformer = CompositePageTransformer()
         compositePageTransformer.addTransformer(MarginPageTransformer(40))
@@ -71,6 +87,10 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
                 layoutParams = lp
             }
             bannerSlider.currentItem = 1
+        }
+        vm.tracks.observe(viewLifecycleOwner) {
+            rowNewest.trackAdapter.submitList(it)
+            rowPopular.trackAdapter.submitList(it)
         }
     }
 }

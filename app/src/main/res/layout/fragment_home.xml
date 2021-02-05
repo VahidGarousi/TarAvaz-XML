@@ -43,6 +43,23 @@
                     app:dotsWidthFactor="4"
                     app:progressMode="false" />
             </FrameLayout>
+
+            <ir.vbile.app.taravaz.view.item.BaseItemRow
+                android:id="@+id/rowNewest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bir_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:bir_orientation="horizontal" />
+
+            <ir.vbile.app.taravaz.view.item.BaseItemRow
+                android:id="@+id/rowPopular"
+                android:layout_width="match_parent"
+                app:springAnimationTraitStatus="true"
+                android:layout_height="wrap_content"
+                app:bir_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:bir_orientation="vertical"
+                app:bir_rowTitle="@string/popular_songs"
+                app:bir_viewType="@layout/item_song_type2" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
