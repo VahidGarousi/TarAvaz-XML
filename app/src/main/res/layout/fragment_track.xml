@@ -45,7 +45,7 @@
                     app:srcCompat="@drawable/ic_search" />
             </FrameLayout>
 
-            <ir.vbile.app.taravaz.view.cusom.TrackView
+            <ir.vbile.app.taravaz.view.cusom.track.TrackView
                 android:id="@+id/rowEditorSuggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                 app:tv_rowTitle="@string/editor_suggestion"
                 app:tv_viewType="@layout/item_track_type1" />
 
-            <ir.vbile.app.taravaz.view.cusom.TrackView
+            <ir.vbile.app.taravaz.view.cusom.track.TrackView
                 android:id="@+id/rowLatest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package ir.vbile.app.taravaz.view.cusom
+package ir.vbile.app.taravaz.view.cusom.album
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,36 +7,40 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import ir.vbile.app.taravaz.R
-import ir.vbile.app.taravaz.data.Artist
+import ir.vbile.app.taravaz.data.Album
 import ir.vbile.app.taravaz.extentions.getEnum
-import kotlinx.android.synthetic.main.track_base_row.view.*
+import ir.vbile.app.taravaz.view.cusom.artist.ArtistAdapter
+import ir.vbile.app.taravaz.view.cusom.track.BirLayoutManager
+import ir.vbile.app.taravaz.view.cusom.track.BirOrientation
+import kotlinx.android.synthetic.main.base_artist_row.view.*
 
-class ArtistsView @JvmOverloads constructor(
+class AlbumsView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
-    private val artistAdapter: ArtistAdapter
-    fun submitList(it: List<Artist>?) {
-        artistAdapter.submitList(it)
+    private val albumAdapter: AlbumAdapter
+
+    fun submitList(it: List<Album>) {
+        albumAdapter.submitList(it)
     }
 
     init {
-        inflate(context, R.layout.base_artist_row, this)
-        context.obtainStyledAttributes(attrs, R.styleable.ArtistsView).apply {
+        inflate(context, R.layout.base_album_row, this)
+        context.obtainStyledAttributes(attrs, R.styleable.AlbumsView).apply {
             try {
-                val title = getString(R.styleable.ArtistsView_av_rowTitle)
-                val btnViewAllTitle = getString(R.styleable.ArtistsView_av_viewAllText)
+                val title = getString(R.styleable.AlbumsView_album_rowTitle)
+                val btnViewAllTitle = getString(R.styleable.AlbumsView_album_viewAllText)
                 btnViewAll?.let {
                     it.text = btnViewAllTitle ?: context.getString(R.string.viewAll)
                 }
                 tvRowTitle?.let {
-                    it.text = title ?: context.getString(R.string.newest_songs)
+                    it.text = title ?: context.getString(R.string.latest_albums)
                 }
                 val layout =
-                    getResourceId(R.styleable.ArtistsView_av_viewType, R.layout.item_track_type1)
+                    getResourceId(R.styleable.AlbumsView_album_viewType, R.layout.item_track_type1)
                 val orientation =
-                    getEnum(R.styleable.ArtistsView_av_orientation, BirOrientation.Vertical)
+                    getEnum(R.styleable.AlbumsView_album_orientation, BirOrientation.Vertical)
                 val layoutManager = when (getEnum(
-                    R.styleable.ArtistsView_av_layoutManager,
+                    R.styleable.AlbumsView_album_layoutManager,
                     BirLayoutManager.Linear
                 )) {
                     BirLayoutManager.Linear -> LinearLayoutManager(
@@ -48,9 +52,9 @@ class ArtistsView @JvmOverloads constructor(
                     BirLayoutManager.Staggered -> StaggeredGridLayoutManager(2, orientation.value)
                 }
                 rvItems.layoutManager = layoutManager
-                val springAnimationTraitStatus = getBoolean(R.styleable.TrackView_tv_springAnimationTraitStatus, false)
-                artistAdapter = ArtistAdapter(layout, springAnimationTraitStatus)
-                rvItems.adapter = artistAdapter
+                val springAnimationTraitStatus = getBoolean(R.styleable.AlbumsView_album_springAnimationTraitStatus, false)
+                albumAdapter = AlbumAdapter(layout, springAnimationTraitStatus)
+                rvItems.adapter = albumAdapter
             } finally {
                 recycle()
             }

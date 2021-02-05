@@ -36,5 +36,5 @@
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="5"
-        tools:listitem="@layout/item_track_type1" />
+        tools:listitem="@layout/item_album_type1" />
 </FrameLayout>

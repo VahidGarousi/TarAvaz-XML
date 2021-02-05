@@ -1,4 +1,4 @@
-package ir.vbile.app.taravaz.view.cusom
+package ir.vbile.app.taravaz.view.cusom.artist
 
 import android.view.LayoutInflater
 import android.view.View

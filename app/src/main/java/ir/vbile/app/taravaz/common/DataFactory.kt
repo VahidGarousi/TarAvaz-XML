@@ -216,35 +216,40 @@ object DataFactory {
             "رگ خواب",
             Calendar.getInstance(),
             "توضیحات آلبوم",
-            "https://upload.wikimedia.org/wikipedia/fa/0/05/Rage_Khab.jpg"
+            "https://upload.wikimedia.org/wikipedia/fa/0/05/Rage_Khab.jpg",
+            getSuggestedArtist()[0]
         ),
         Album(
             2,
             "شانزلیزه",
             Calendar.getInstance(),
             "توضیحات آلبوم",
-            "https://upload.samfuni.com/2019/03/a3_4qe304_2019-03-07-12-39-05_W250_H250.jpg"
+            "https://upload.samfuni.com/2019/03/a3_4qe304_2019-03-07-12-39-05_W250_H250.jpg",
+            getSuggestedArtist()[1]
         ),
         Album(
             3,
             "مثل مجسمه",
             Calendar.getInstance(),
             "توضیحات آلبوم",
-            "https://upload.wikimedia.org/wikipedia/fa/a/a8/Mehdi-Yarrahi-Mesle-Mojasame.jpg"
+            "https://upload.wikimedia.org/wikipedia/fa/a/a8/Mehdi-Yarrahi-Mesle-Mojasame.jpg",
+            getSuggestedArtist()[2]
         ),
         Album(
             4,
             "نگاه",
             Calendar.getInstance(),
             "توضیحات آلبوم",
-            "https://upmusics.com/wp-content/uploads/2018/01/143123605962769954ed98a7874136b22.jpg"
+            "https://upmusics.com/wp-content/uploads/2018/01/143123605962769954ed98a7874136b22.jpg",
+            getSuggestedArtist()[3]
         ),
         Album(
             4,
             "اینجانب",
             Calendar.getInstance(),
             "توضیحات آلبوم",
-            "https://lh3.googleusercontent.com/proxy/mJyElkPLXbVb0R4RoFhOjgYYkdNzDFIuQYSz3KVCoUaEL-ks1zwnvFMhxaTkKtuS3ORgWnB2pljpXLG982lGjcqnaTKgrEIURkJmNgMNNfY75FqQhZM1qDL4PtsdSVlH3g"
+            "https://lh3.googleusercontent.com/proxy/mJyElkPLXbVb0R4RoFhOjgYYkdNzDFIuQYSz3KVCoUaEL-ks1zwnvFMhxaTkKtuS3ORgWnB2pljpXLG982lGjcqnaTKgrEIURkJmNgMNNfY75FqQhZM1qDL4PtsdSVlH3g",
+            getSuggestedArtist()[4]
         ),
     )
 }

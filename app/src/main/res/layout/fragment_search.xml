@@ -4,73 +4,109 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="16dp">
+        android:layout_height="wrap_content">
 
-
-        <ImageView
-            android:id="@+id/btnFilter"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="end|center_vertical"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/background_filter_button"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            android:padding="12dp"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_filter" />
-
-        <EditText
-            android:id="@+id/etKeyword"
-            android:layout_width="0dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/background_et_search"
-            android:hint="@string/value_search"
-            android:inputType="text"
-            android:paddingStart="48dp"
-            android:paddingEnd="16dp"
-            android:textAlignment="viewStart"
-            android:textColor="?colorOnSurface"
-            android:textColorHint="?android:textColorSecondary"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@+id/btnFilter"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start|center_vertical"
-            android:layout_marginStart="16dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintBottom_toBottomOf="@+id/etKeyword"
-            app:layout_constraintStart_toStartOf="@+id/etKeyword"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_search" />
-
-        <ir.vbile.app.taravaz.view.cusom.ArtistsView
-            android:id="@+id/rowArtists"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:av_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:av_orientation="horizontal"
-            app:av_rowTitle="@string/artists"
-            app:av_viewType="@layout/item_artist_type1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etKeyword" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent"
+            android:paddingTop="16dp">
+
+
+            <ImageView
+                android:id="@+id/btnFilter"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/background_filter_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:padding="12dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_filter" />
+
+            <EditText
+                android:id="@+id/etKeyword"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/background_et_search"
+                android:hint="@string/value_search"
+                android:inputType="text"
+                android:paddingStart="48dp"
+                android:paddingEnd="16dp"
+                android:textAlignment="viewStart"
+                android:textColor="?colorOnSurface"
+                android:textColorHint="?android:textColorSecondary"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@+id/btnFilter"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/etKeyword"
+                app:layout_constraintStart_toStartOf="@+id/etKeyword"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_search" />
+
+            <ir.vbile.app.taravaz.view.cusom.artist.ArtistsView
+                android:id="@+id/rowArtists"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:av_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:av_orientation="horizontal"
+                app:av_rowTitle="@string/artists"
+                app:av_viewType="@layout/item_artist_type1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etKeyword" />
+
+            <ir.vbile.app.taravaz.view.cusom.album.AlbumsView
+                android:id="@+id/rowAlbums"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:album_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:album_orientation="horizontal"
+                app:album_viewType="@layout/item_album_type1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowArtists" />
+
+            <ir.vbile.app.taravaz.view.cusom.track.TrackView
+                android:id="@+id/rowLatestTracks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rowAlbums"
+                app:tv_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:tv_orientation="vertical"
+                app:tv_rowTitle="@string/sortBy"
+                app:tv_springAnimationTraitStatus="true"
+                app:tv_viewAllText="@string/popular"
+                app:tv_viewType="@layout/item_track_type2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

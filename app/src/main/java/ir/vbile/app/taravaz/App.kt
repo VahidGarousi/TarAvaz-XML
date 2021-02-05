@@ -63,7 +63,7 @@ class App : Application() {
             }
             viewModel { HomeVM(get(), get()) }
             viewModel { (sort: Int) -> TrackVM(get(), sort) }
-            viewModel { SearchVM(get(), get()) }
+            viewModel { SearchVM(get(), get(), get()) }
         }
         startKoin {
             androidContext(this@App)

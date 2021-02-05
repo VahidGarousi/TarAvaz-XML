@@ -37,4 +37,21 @@
         </attr>
         <attr name="av_springAnimationTraitStatus" format="boolean" />
     </declare-styleable>
+
+
+    <declare-styleable name="AlbumsView">
+        <attr name="album_rowTitle" format="string" />
+        <attr name="album_viewAllText" format="string" />
+        <attr name="album_viewType" format="reference" />
+        <attr name="album_layoutManager" format="enum">
+            <enum name="androidx.recyclerview.widget.LinearLayoutManager" value="0" />
+            <enum name="androidx.recyclerview.widget.GridLayoutManager" value="1" />
+            <enum name="androidx.recyclerview.widget.StaggeredGridLayoutManager" value="2" />
+        </attr>
+        <attr name="album_orientation">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="album_springAnimationTraitStatus" format="boolean" />
+    </declare-styleable>
 </resources>

@@ -9,7 +9,8 @@ data class ResAlbum(
     val name: String,
     val release_date: String,
     val description: String,
-    val cover: String
+    val cover: String,
+    val artist: ResArtist
 ) {
     fun toModel() = Album(
         id,
@@ -18,6 +19,7 @@ data class ResAlbum(
             time = release_date.toDate()
         },
         description,
-        cover
+        cover,
+        artist = artist.toModel()
     )
 }
