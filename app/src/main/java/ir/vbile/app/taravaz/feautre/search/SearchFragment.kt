@@ -19,5 +19,8 @@ class SearchFragment : TarAvazFragment(R.layout.fragment_search) {
         vm.suggestedArtist.observe(viewLifecycleOwner) {
             rowArtists.submitList(it)
         }
+        vm.suggestedAlbum.observe(viewLifecycleOwner) {
+            longToast("Loaded")
+        }
     }
 }

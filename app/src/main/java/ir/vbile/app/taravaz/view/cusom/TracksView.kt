@@ -23,7 +23,7 @@ class TrackView @JvmOverloads constructor(
 
     init {
         // inflate the layout into "this" component
-        inflate(context, R.layout.track_base_row, this)
+        inflate(context, R.layout.base_track_row, this)
         context.obtainStyledAttributes(attrs, R.styleable.TrackView).apply {
             try {
                 val title = getString(R.styleable.TrackView_tv_rowTitle)

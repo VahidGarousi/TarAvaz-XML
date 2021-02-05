@@ -20,7 +20,7 @@ class ArtistsView @JvmOverloads constructor(
     }
 
     init {
-        inflate(context, R.layout.artist_base_row, this)
+        inflate(context, R.layout.base_artist_row, this)
         context.obtainStyledAttributes(attrs, R.styleable.ArtistsView).apply {
             try {
                 val title = getString(R.styleable.ArtistsView_av_rowTitle)
