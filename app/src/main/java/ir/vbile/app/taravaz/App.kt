@@ -16,6 +16,7 @@ import ir.vbile.app.taravaz.feautre.track.TrackVM
 import ir.vbile.app.taravaz.services.FrescoImageLoadingServiceImpl
 import ir.vbile.app.taravaz.services.ImageLoadingService
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import timber.log.Timber
@@ -41,8 +42,8 @@ class App : Application() {
                 } else
                     TrackRepositoryImpl(TrackRemoteDataSource(get()))
             }
-            single { HomeVM(get(), get()) }
-            single { TrackVM(get()) }
+            viewModel { HomeVM(get(), get()) }
+            viewModel { (sort: Int) -> TrackVM(get(), sort) }
         }
         startKoin {
             androidContext(this@App)
