@@ -41,7 +41,11 @@ class TracksFragment : TarAvazFragment(R.layout.fragment_track) {
         }
         vm.tracks.observe(viewLifecycleOwner) {
             rowEditorSuggestion.submitList(it)
-            rowLatest.submitList(it)
+            val list = it.toMutableList()
+            list.addAll(it)
+            list.addAll(it)
+            list.addAll(it)
+            rowLatest.submitList(list)
         }
     }
 }
