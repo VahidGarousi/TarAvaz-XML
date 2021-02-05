@@ -12,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazFragment
 import ir.vbile.app.taravaz.extentions.convertDpToPixel
+import kotlinx.android.synthetic.main.base_item_row.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.math.abs
@@ -21,21 +22,21 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
     val vm: HomeVM by viewModel()
     lateinit var bannerSliderAdapter: BannerSliderAdapter
     val sliderHandler: Handler = HandlerCompat.createAsync(Looper.getMainLooper())
-    val trackAdapter = TrackAdapter()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeToObservers()
         setUpSlider()
         setUpTrackAdapter()
-        btnViewAll.setOnClickListener {
+        rowNewest.btnViewAll.setOnClickListener {
             longToast("مشاهده همه")
+        }
+        rowPopular.btnViewAll.setOnClickListener {
+            longToast("همه مشاهده")
         }
     }
 
     private fun setUpTrackAdapter() {
-        rvItems.apply {
-            adapter = trackAdapter
-        }
+
     }
 
     private fun setUpSlider() {
@@ -88,7 +89,8 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
             bannerSlider.currentItem = 1
         }
         vm.tracks.observe(viewLifecycleOwner) {
-            trackAdapter.submitList(it)
+            rowNewest.trackAdapter.submitList(it)
+            rowPopular.trackAdapter.submitList(it)
         }
     }
 }

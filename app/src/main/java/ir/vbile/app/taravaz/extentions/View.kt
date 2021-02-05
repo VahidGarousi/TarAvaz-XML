@@ -1,6 +1,5 @@
 package ir.vbile.app.taravaz.extentions
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
@@ -54,7 +53,6 @@ fun View.ripple(): View {
 }
 
 
-@SuppressLint("ClickableViewAccessibility")
 fun View.implementSpringAnimationTrait() {
     val scaleXAnim = SpringAnimation(this, DynamicAnimation.SCALE_X, 0.90f)
     val scaleYAnim = SpringAnimation(this, DynamicAnimation.SCALE_Y, 0.90f)
@@ -70,7 +68,7 @@ fun View.implementSpringAnimationTrait() {
                 scaleYAnim.spring.stiffness = SpringForce.STIFFNESS_LOW
                 scaleYAnim.spring.dampingRatio = SpringForce.DAMPING_RATIO_LOW_BOUNCY
                 scaleYAnim.start()
-
+                return@setOnTouchListener true
             }
             MotionEvent.ACTION_UP,
             MotionEvent.ACTION_CANCEL -> {
@@ -85,11 +83,8 @@ fun View.implementSpringAnimationTrait() {
                 reverseScaleYAnim.spring.stiffness = SpringForce.STIFFNESS_LOW
                 reverseScaleYAnim.spring.dampingRatio = SpringForce.DAMPING_RATIO_LOW_BOUNCY
                 reverseScaleYAnim.start()
-
-
             }
         }
-
         false
     }
 }

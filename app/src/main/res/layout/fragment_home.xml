@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_screens">
@@ -45,41 +44,22 @@
                     app:progressMode="false" />
             </FrameLayout>
 
-            <FrameLayout
+            <ir.vbile.app.taravaz.view.item.BaseItemRow
+                android:id="@+id/rowNewest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                app:bir_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:bir_orientation="horizontal" />
 
-                <TextView
-                    android:id="@+id/tvRowTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="8dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/newest_songs"
-                    android:textAppearance="?textAppearanceHeadline6" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnViewAll"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="8dp"
-                    android:text="@string/viewAll"
-                    android:textAppearance="?textAppearanceHeadline6" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvItems"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="48dp"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="5"
-                    tools:listitem="@layout/item_song_type1" />
-            </FrameLayout>
+            <ir.vbile.app.taravaz.view.item.BaseItemRow
+                android:id="@+id/rowPopular"
+                android:layout_width="match_parent"
+                app:springAnimationTraitStatus="true"
+                android:layout_height="wrap_content"
+                app:bir_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:bir_orientation="vertical"
+                app:bir_rowTitle="@string/popular_songs"
+                app:bir_viewType="@layout/item_song_type2" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
