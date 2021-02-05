@@ -77,20 +77,20 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
             bannerSlider.apply {
                 offscreenPageLimit = 3
                 adapter = bannerSliderAdapter
-                val bannerSliderHeight =
+                /*val bannerSliderHeight =
                     (((bannerSlider.width - convertDpToPixel(
                         32F,
                         requireContext()
                     )) * 140) / 253)
                 val lp = layoutParams
                 lp.height = bannerSliderHeight
-                layoutParams = lp
+                layoutParams = lp*/
             }
             bannerSlider.currentItem = 1
         }
         vm.tracks.observe(viewLifecycleOwner) {
-            rowNewest.trackAdapter.submitList(it)
-            rowPopular.trackAdapter.submitList(it)
+            rowNewest.submitList(it)
+            rowPopular.submitList(it)
         }
     }
 }

@@ -56,7 +56,9 @@ abstract class TarAvazFragment(
         rootView?.let {
             viewContext?.let { _ ->
                 val toolBar = requireActivity().toolbar
-                toolBar?.showBackBtn(shouldShow)
+                toolBar?.showBackBtn(shouldShow) {
+
+                }
                 Timber.i("")
             }
         }

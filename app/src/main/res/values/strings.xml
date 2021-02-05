@@ -3,7 +3,7 @@
     <string name="home">صفحه اصلی</string>
     <string name="genre">دسته بندی</string>
     <string name="search">جستجو</string>
-    <string name="music">ترانه ها</string>
+    <string name="track">ترانه ها</string>
     <string name="artist">هنرمندان</string>
     <string name="persian_app_name">ترآواز</string>
     <string name="app_description">مرجعی کامل برای دسترسی به موسیقی و ترانه های ایرانی</string>
@@ -38,4 +38,13 @@
     <string name="reza_bahram">رضا بهرام</string>
     <string name="mohammad_alizadeh">محمد علیزاده</string>
     <string name="popular_songs">محبوب‌ترین ترانه‌ها</string>
+    <string name="value_search">نام ترانه مورد نظر را وارد کنید</string>
+    <string name="editor_suggestion">پیشنهاد سردبیر</string>
+    <string name="sortBy">مرتب سازی</string>
+    <string name="popular">محبوب ترین</string>
+    <string name="sort">مرتب سازی</string>
+    <string name="sortLatest">جدیدترین</string>
+    <string name="sortPopular">پربازدیدترین</string>
+    <string name="sortPriceHighToLow">گرانترین</string>
+    <string name="sortPriceLowToHigh">ارزانترین</string>
 </resources>

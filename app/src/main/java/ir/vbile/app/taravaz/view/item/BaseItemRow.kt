@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import ir.vbile.app.taravaz.R
+import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.extentions.getEnum
 import ir.vbile.app.taravaz.feautre.home.TrackAdapter
 import kotlinx.android.synthetic.main.base_item_row.view.*
@@ -15,7 +16,11 @@ import kotlinx.android.synthetic.main.base_item_row.view.*
 class BaseItemRow @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
-    lateinit var trackAdapter: TrackAdapter
+    fun submitList(it: List<Track>?) {
+        trackAdapter.submitList(it)
+    }
+
+    private var trackAdapter: TrackAdapter
 
     init {
         // inflate the layout into "this" component
