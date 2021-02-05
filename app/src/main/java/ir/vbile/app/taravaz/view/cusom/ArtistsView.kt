@@ -5,29 +5,26 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import ir.vbile.app.taravaz.R
-import ir.vbile.app.taravaz.data.Track
+import ir.vbile.app.taravaz.data.Artist
 import ir.vbile.app.taravaz.extentions.getEnum
 import kotlinx.android.synthetic.main.track_base_row.view.*
 
-class TrackView @JvmOverloads constructor(
+class ArtistsView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
-    fun submitList(it: List<Track>?) {
-        trackAdapter.submitList(it)
+    private val artistAdapter: ArtistAdapter
+    fun submitList(it: List<Artist>?) {
+        artistAdapter.submitList(it)
     }
 
-    private var trackAdapter: TrackAdapter
-
     init {
-        // inflate the layout into "this" component
-        inflate(context, R.layout.track_base_row, this)
-        context.obtainStyledAttributes(attrs, R.styleable.TrackView).apply {
+        inflate(context, R.layout.artist_base_row, this)
+        context.obtainStyledAttributes(attrs, R.styleable.ArtistsView).apply {
             try {
-                val title = getString(R.styleable.TrackView_tv_rowTitle)
-                val btnViewAllTitle = getString(R.styleable.TrackView_tv_viewAllText)
+                val title = getString(R.styleable.ArtistsView_av_rowTitle)
+                val btnViewAllTitle = getString(R.styleable.ArtistsView_av_viewAllText)
                 btnViewAll?.let {
                     it.text = btnViewAllTitle ?: context.getString(R.string.viewAll)
                 }
@@ -35,11 +32,11 @@ class TrackView @JvmOverloads constructor(
                     it.text = title ?: context.getString(R.string.newest_songs)
                 }
                 val layout =
-                    getResourceId(R.styleable.TrackView_tv_viewType, R.layout.item_track_type1)
+                    getResourceId(R.styleable.ArtistsView_av_viewType, R.layout.item_track_type1)
                 val orientation =
-                    getEnum(R.styleable.TrackView_tv_orientation, BirOrientation.Vertical)
+                    getEnum(R.styleable.ArtistsView_av_orientation, BirOrientation.Vertical)
                 val layoutManager = when (getEnum(
-                    R.styleable.TrackView_tv_layoutManager,
+                    R.styleable.ArtistsView_av_layoutManager,
                     BirLayoutManager.Linear
                 )) {
                     BirLayoutManager.Linear -> LinearLayoutManager(
@@ -53,19 +50,10 @@ class TrackView @JvmOverloads constructor(
                 rvItems.layoutManager = layoutManager
                 val springAnimationTraitStatus =
                     getBoolean(R.styleable.TrackView_tv_springAnimationTraitStatus, false)
-                trackAdapter = TrackAdapter(layout, springAnimationTraitStatus)
-                rvItems.adapter = trackAdapter
+                artistAdapter = ArtistAdapter(layout, springAnimationTraitStatus)
             } finally {
                 recycle()
             }
         }
     }
-}
-
-enum class BirLayoutManager(val value: Int) {
-    Linear(0), Grid(1), Staggered(2)
-}
-
-enum class BirOrientation(val value: Int) {
-    Horizontal(RecyclerView.HORIZONTAL), Vertical(RecyclerView.VERTICAL)
 }

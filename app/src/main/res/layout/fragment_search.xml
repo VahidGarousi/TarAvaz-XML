@@ -57,7 +57,7 @@
             app:layout_constraintStart_toStartOf="@+id/etKeyword"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_search" />
-        <ir.vbile.app.taravaz.view.cusom.BaseItemRow
+        <ir.vbile.app.taravaz.view.cusom.TrackView
             android:id="@+id/rowArtist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

@@ -6,9 +6,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.EXTRA_KEY_DATA
 import ir.vbile.app.taravaz.common.TarAvazFragment
-import kotlinx.android.synthetic.main.base_item_row.view.*
+import kotlinx.android.synthetic.main.track_base_row.view.*
 import kotlinx.android.synthetic.main.fragment_track.*
-import kotlinx.android.synthetic.main.item_song_type2.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 

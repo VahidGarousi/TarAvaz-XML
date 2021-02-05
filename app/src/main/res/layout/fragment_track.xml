@@ -45,25 +45,25 @@
                     app:srcCompat="@drawable/ic_search" />
             </FrameLayout>
 
-            <ir.vbile.app.taravaz.view.cusom.BaseItemRow
+            <ir.vbile.app.taravaz.view.cusom.TrackView
                 android:id="@+id/rowEditorSuggestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:bir_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:bir_orientation="horizontal"
-                app:bir_rowTitle="@string/editor_suggestion"
-                app:bir_viewType="@layout/item_track_type1" />
+                app:tv_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:tv_orientation="horizontal"
+                app:tv_rowTitle="@string/editor_suggestion"
+                app:tv_viewType="@layout/item_track_type1" />
 
-            <ir.vbile.app.taravaz.view.cusom.BaseItemRow
+            <ir.vbile.app.taravaz.view.cusom.TrackView
                 android:id="@+id/rowLatest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:bir_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:bir_orientation="vertical"
-                app:bir_rowTitle="@string/sortBy"
-                app:bir_viewAllText="@string/popular"
-                app:bir_viewType="@layout/item_track_type2"
-                app:springAnimationTraitStatus="true" />
+                app:tv_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:tv_orientation="vertical"
+                app:tv_rowTitle="@string/sortBy"
+                app:tv_viewAllText="@string/popular"
+                app:tv_viewType="@layout/item_track_type2"
+                app:tv_springAnimationTraitStatus="true" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
