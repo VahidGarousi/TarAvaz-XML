@@ -57,12 +57,13 @@
 
         <ImageView
             android:id="@+id/btnShowMore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:background="?selectableItemBackgroundBorderless"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
+            android:padding="16dp"
             app:srcCompat="@drawable/ic_more" />
     </LinearLayout>
 </FrameLayout>
