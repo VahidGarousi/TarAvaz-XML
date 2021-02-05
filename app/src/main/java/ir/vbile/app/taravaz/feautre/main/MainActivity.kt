@@ -37,10 +37,10 @@ class MainActivity : TarAvazActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationMain)
 
         val navGraphIds = listOf(
+            R.navigation.home,
+            R.navigation.track,
             R.navigation.genre,
             R.navigation.search,
-            R.navigation.home,
-            R.navigation.music,
             R.navigation.artist
         )
 
@@ -55,10 +55,48 @@ class MainActivity : TarAvazActivity() {
         // Whenever the selected controller changes, setup the action bar.
         controller.observe(this, { navController ->
             setupNavigationView(controller.value!!)
+            setUpToolbar(navController)
             //      setupActionBarWithNavController(navController)
         })
         currentNavController = controller
-        bottomNavigationMain.selectedItemId = R.id.home
+    }
+
+    private fun setUpToolbar(navController: NavController?) {
+        navController?.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.homeFragment -> {
+                    runOnUiThread {
+                        toolbar.setTitle(getString(R.string.home))
+                        toolbar.showBackBtn(false)
+                    }
+                }
+                R.id.trackFragment -> {
+                    runOnUiThread {
+                        toolbar.setTitle(getString(R.string.track))
+                        toolbar.showBackBtn(true)
+                    }
+                }
+
+                R.id.genreFragment -> {
+                    runOnUiThread {
+                        toolbar.setTitle(getString(R.string.genre))
+                        toolbar.showBackBtn(true)
+                    }
+                }
+                R.id.searchFragment -> {
+                    runOnUiThread {
+                        toolbar.setTitle(getString(R.string.search))
+                        toolbar.showBackBtn(true)
+                    }
+                }
+                R.id.artistFragment -> {
+                    runOnUiThread {
+                        toolbar.setTitle(getString(R.string.artist))
+                        toolbar.showBackBtn(true)
+                    }
+                }
+            }
+        }
     }
 
     private fun setupNavigationView(navController: NavController) {
