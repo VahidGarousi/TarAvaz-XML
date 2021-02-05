@@ -3,6 +3,8 @@ package ir.vbile.app.taravaz.feautre.main
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazActivity
@@ -54,15 +56,17 @@ class MainActivity : TarAvazActivity() {
 
         // Whenever the selected controller changes, setup the action bar.
         controller.observe(this, { navController ->
-            setupNavigationView(controller.value!!)
             setUpToolbar(navController)
+            setupNavigationView(controller.value!!)
             //      setupActionBarWithNavController(navController)
         })
         currentNavController = controller
     }
+    private val destinations = mutableListOf<Int>()
 
     private fun setUpToolbar(navController: NavController?) {
         navController?.addOnDestinationChangedListener { _, destination, _ ->
+            destinations.add(destination.id)
             when (destination.id) {
                 R.id.homeFragment -> {
                     runOnUiThread {
@@ -73,26 +77,34 @@ class MainActivity : TarAvazActivity() {
                 R.id.trackFragment -> {
                     runOnUiThread {
                         toolbar.setTitle(getString(R.string.track))
-                        toolbar.showBackBtn(true)
+                        toolbar.showBackBtn(true) {
+                          onBackPressed()
+                        }
                     }
                 }
 
                 R.id.genreFragment -> {
                     runOnUiThread {
                         toolbar.setTitle(getString(R.string.genre))
-                        toolbar.showBackBtn(true)
+                        toolbar.showBackBtn(true) {
+                            onBackPressed()
+                        }
                     }
                 }
                 R.id.searchFragment -> {
                     runOnUiThread {
                         toolbar.setTitle(getString(R.string.search))
-                        toolbar.showBackBtn(true)
+                        toolbar.showBackBtn(true) {
+                            onBackPressed()
+                        }
                     }
                 }
                 R.id.artistFragment -> {
                     runOnUiThread {
                         toolbar.setTitle(getString(R.string.artist))
-                        toolbar.showBackBtn(true)
+                        toolbar.showBackBtn(true) {
+                            onBackPressed()
+                        }
                     }
                 }
             }

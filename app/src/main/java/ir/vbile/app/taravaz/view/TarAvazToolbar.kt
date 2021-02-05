@@ -3,6 +3,7 @@ package ir.vbile.app.taravaz.view
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import android.widget.Toast
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.extentions.setVisibleOrGone
 import kotlinx.android.synthetic.main.view_toolbar.view.*
@@ -35,7 +36,9 @@ class TarAvazToolbar @JvmOverloads constructor(
     fun showBackBtn(shouldShow: Boolean, function: () -> Unit? = {}) {
         Timber.i(shouldShow.toString())
         btnBack.setVisibleOrGone(shouldShow)
-        btnBack.setOnClickListener { function.invoke() }
+        btnBack.setOnClickListener {
+            function.invoke()
+        }
     }
 
     fun setTitle(title: String) {

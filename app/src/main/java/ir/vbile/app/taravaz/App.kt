@@ -12,6 +12,7 @@ import ir.vbile.app.taravaz.data.repo.impl.TrackRepositoryImpl
 import ir.vbile.app.taravaz.data.repo.source.BannerRemoteDataSource
 import ir.vbile.app.taravaz.data.repo.source.TrackRemoteDataSource
 import ir.vbile.app.taravaz.feautre.home.HomeVM
+import ir.vbile.app.taravaz.feautre.track.TrackVM
 import ir.vbile.app.taravaz.services.FrescoImageLoadingServiceImpl
 import ir.vbile.app.taravaz.services.ImageLoadingService
 import org.koin.android.ext.koin.androidContext
@@ -41,6 +42,7 @@ class App : Application() {
                     TrackRepositoryImpl(TrackRemoteDataSource(get()))
             }
             single { HomeVM(get(), get()) }
+            single { TrackVM(get()) }
         }
         startKoin {
             androidContext(this@App)

@@ -89,8 +89,8 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
             bannerSlider.currentItem = 1
         }
         vm.tracks.observe(viewLifecycleOwner) {
-            rowNewest.trackAdapter.submitList(it)
-            rowPopular.trackAdapter.submitList(it)
+            rowNewest.submitList(it)
+            rowPopular.submitList(it)
         }
     }
 }

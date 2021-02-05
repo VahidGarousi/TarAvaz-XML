@@ -38,4 +38,8 @@
     <string name="reza_bahram">رضا بهرام</string>
     <string name="mohammad_alizadeh">محمد علیزاده</string>
     <string name="popular_songs">محبوب‌ترین ترانه‌ها</string>
+    <string name="value_search">نام ترانه مورد نظر را وارد کنید</string>
+    <string name="editor_suggestion">پیشنهاد سردبیر</string>
+    <string name="sortBy">مرتب سازی</string>
+    <string name="popular">محبوب ترین</string>
 </resources>
