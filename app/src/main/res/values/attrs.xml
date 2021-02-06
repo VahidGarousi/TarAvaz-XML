@@ -20,6 +20,7 @@
             <enum name="vertical" value="1" />
         </attr>
         <attr name="tv_springAnimationTraitStatus" format="boolean" />
+        <attr name="track_showMoreBtn" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="ArtistsView">

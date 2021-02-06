@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.extentions.getEnum
+import ir.vbile.app.taravaz.extentions.setVisibleOrGone
 import kotlinx.android.synthetic.main.base_track_row.view.*
 
 class TrackView @JvmOverloads constructor(
@@ -28,6 +29,8 @@ class TrackView @JvmOverloads constructor(
             try {
                 val title = getString(R.styleable.TrackView_tv_rowTitle)
                 val btnViewAllTitle = getString(R.styleable.TrackView_tv_viewAllText)
+                val shouldShowMoreBtn = getBoolean(R.styleable.TrackView_track_showMoreBtn, true)
+                btnViewAll.setVisibleOrGone(shouldShowMoreBtn)
                 btnViewAll?.let {
                     it.text = btnViewAllTitle ?: context.getString(R.string.viewAll)
                 }
@@ -59,6 +62,10 @@ class TrackView @JvmOverloads constructor(
                 recycle()
             }
         }
+    }
+
+    interface OnTrackClicked {
+        fun onTrackClicked(track: Track)
     }
 }
 

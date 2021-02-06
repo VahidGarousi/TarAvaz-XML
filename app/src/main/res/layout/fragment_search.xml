@@ -102,8 +102,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/rowAlbums"
                 app:tv_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:tv_orientation="vertical"
-                app:tv_rowTitle="@string/sortBy"
+                app:tv_rowTitle="@string/newest_songs"
                 app:tv_springAnimationTraitStatus="true"
+                app:track_showMoreBtn="false"
                 app:tv_viewAllText="@string/popular"
                 app:tv_viewType="@layout/item_track_type2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
