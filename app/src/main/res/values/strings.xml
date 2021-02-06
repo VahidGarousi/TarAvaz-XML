@@ -53,4 +53,5 @@
     <string name="genre_title">خواننده موسیقی پاپ</string>
     <string name="song_count">تعداد ترانه ها</string>
     <string name="biography">بیوگرافی</string>
+    <string name="pop">موسیقی پاپ</string>
 </resources>

@@ -3,10 +3,7 @@ package ir.vbile.app.taravaz.common
 import io.reactivex.Single
 import ir.vbile.app.taravaz.App
 import ir.vbile.app.taravaz.R
-import ir.vbile.app.taravaz.data.Album
-import ir.vbile.app.taravaz.data.Artist
-import ir.vbile.app.taravaz.data.Banner
-import ir.vbile.app.taravaz.data.Track
+import ir.vbile.app.taravaz.data.*
 import java.util.*
 
 object DataFactory {
@@ -251,5 +248,34 @@ object DataFactory {
             "https://lh3.googleusercontent.com/proxy/mJyElkPLXbVb0R4RoFhOjgYYkdNzDFIuQYSz3KVCoUaEL-ks1zwnvFMhxaTkKtuS3ORgWnB2pljpXLG982lGjcqnaTKgrEIURkJmNgMNNfY75FqQhZM1qDL4PtsdSVlH3g",
             getSuggestedArtist()[4]
         ),
+    )
+
+    fun getAllGenres(): List<Genre> = listOf(
+        Genre(1, "پاپ", "", 603),
+        Genre(2, "سنتی", "", 603),
+        Genre(3, "رپ", "", 603),
+        Genre(4, "غمگین", "", 603),
+        Genre(5, "پرطرفدار", "", 603),
+        Genre(6, "عروسی", "", 603),
+        Genre(7, "ماشین", "", 603),
+        Genre(8, "محرم", "", 603),
+        Genre(9, "فاطمیه", "", 603),
+        Genre(10, "شب های قدر", "", 603),
+        Genre(11, "پاپ", "", 603),
+        Genre(12, "پاپ", "", 603),
+        Genre(13, "پاپ", "", 603),
+        Genre(14, "پاپ", "", 603),
+        Genre(15, "پاپ", "", 603),
+        Genre(16, "پاپ", "", 603),
+        Genre(17, "پاپ", "", 603),
+        Genre(18, "پاپ", "", 603),
+        Genre(19, "پاپ", "", 603),
+        Genre(20, "پاپ", "", 603),
+        Genre(21, "پاپ", "", 603),
+        Genre(22, "پاپ", "", 603),
+        Genre(23, "پاپ", "", 603),
+        Genre(24, "پاپ", "", 603),
+        Genre(25, "پاپ", "", 603),
+        Genre(26, "پاپ", "", 603),
     )
 }

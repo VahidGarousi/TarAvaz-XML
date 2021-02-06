@@ -5,19 +5,11 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import com.facebook.drawee.backends.pipeline.Fresco
-import ir.vbile.app.taravaz.data.repo.demo.DemoAlbumRepository
-import ir.vbile.app.taravaz.data.repo.demo.DemoArtistRepository
-import ir.vbile.app.taravaz.data.repo.demo.DemoBannerRepositoryImpl
-import ir.vbile.app.taravaz.data.repo.demo.DemoTrackRepositoryImpl
-import ir.vbile.app.taravaz.data.repo.impl.AlbumRepositoryImpl
-import ir.vbile.app.taravaz.data.repo.impl.ArtistRepositoryImpl
-import ir.vbile.app.taravaz.data.repo.impl.BannerRepositoryImpl
-import ir.vbile.app.taravaz.data.repo.impl.TrackRepositoryImpl
-import ir.vbile.app.taravaz.data.repo.source.AlbumRemoteDataSource
-import ir.vbile.app.taravaz.data.repo.source.ArtistRemoteDataSource
-import ir.vbile.app.taravaz.data.repo.source.BannerRemoteDataSource
-import ir.vbile.app.taravaz.data.repo.source.TrackRemoteDataSource
+import ir.vbile.app.taravaz.data.repo.demo.*
+import ir.vbile.app.taravaz.data.repo.impl.*
+import ir.vbile.app.taravaz.data.repo.source.*
 import ir.vbile.app.taravaz.feautre.artist.ArtistVM
+import ir.vbile.app.taravaz.feautre.genre.GenreVM
 import ir.vbile.app.taravaz.feautre.home.HomeVM
 import ir.vbile.app.taravaz.feautre.search.SearchVM
 import ir.vbile.app.taravaz.feautre.track.TrackVM
@@ -62,10 +54,18 @@ class App : Application() {
                 else
                     AlbumRepositoryImpl(AlbumRemoteDataSource(get()))
             }
+
+            factory {
+                if (BuildConfig.DEMO_MODE)
+                    DemoGenreRepository()
+                else
+                    GenreRepositoryImpl(GenreRemoteDataSource(get()))
+            }
             viewModel { HomeVM(get(), get()) }
             viewModel { (sort: Int) -> TrackVM(get(), sort) }
             viewModel { SearchVM(get(), get(), get()) }
             viewModel { ArtistVM(get()) }
+            viewModel { GenreVM(get()) }
         }
         startKoin {
             androidContext(this@App)
