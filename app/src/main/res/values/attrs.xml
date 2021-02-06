@@ -37,6 +37,7 @@
             <enum name="vertical" value="1" />
         </attr>
         <attr name="av_springAnimationTraitStatus" format="boolean" />
+        <attr name="av_spanCount" format="integer" />
     </declare-styleable>
 
 

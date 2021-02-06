@@ -17,6 +17,7 @@ import ir.vbile.app.taravaz.data.repo.source.AlbumRemoteDataSource
 import ir.vbile.app.taravaz.data.repo.source.ArtistRemoteDataSource
 import ir.vbile.app.taravaz.data.repo.source.BannerRemoteDataSource
 import ir.vbile.app.taravaz.data.repo.source.TrackRemoteDataSource
+import ir.vbile.app.taravaz.feautre.artist.ArtistVM
 import ir.vbile.app.taravaz.feautre.home.HomeVM
 import ir.vbile.app.taravaz.feautre.search.SearchVM
 import ir.vbile.app.taravaz.feautre.track.TrackVM
@@ -64,6 +65,7 @@ class App : Application() {
             viewModel { HomeVM(get(), get()) }
             viewModel { (sort: Int) -> TrackVM(get(), sort) }
             viewModel { SearchVM(get(), get(), get()) }
+            viewModel { ArtistVM(get()) }
         }
         startKoin {
             androidContext(this@App)

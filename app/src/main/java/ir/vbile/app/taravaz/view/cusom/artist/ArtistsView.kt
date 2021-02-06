@@ -37,6 +37,7 @@ class ArtistsView @JvmOverloads constructor(
                     getResourceId(R.styleable.ArtistsView_av_viewType, R.layout.item_track_type1)
                 val orientation =
                     getEnum(R.styleable.ArtistsView_av_orientation, BirOrientation.Vertical)
+                val spanCount = getInteger(R.styleable.ArtistsView_av_spanCount,2)
                 val layoutManager = when (getEnum(
                     R.styleable.ArtistsView_av_layoutManager,
                     BirLayoutManager.Linear
@@ -46,8 +47,8 @@ class ArtistsView @JvmOverloads constructor(
                         orientation.value,
                         false
                     )
-                    BirLayoutManager.Grid -> GridLayoutManager(context, 2)
-                    BirLayoutManager.Staggered -> StaggeredGridLayoutManager(2, orientation.value)
+                    BirLayoutManager.Grid -> GridLayoutManager(context, spanCount)
+                    BirLayoutManager.Staggered -> StaggeredGridLayoutManager(spanCount, orientation.value)
                 }
                 rvItems.layoutManager = layoutManager
                 val springAnimationTraitStatus = getBoolean(R.styleable.ArtistsView_av_springAnimationTraitStatus, false)
