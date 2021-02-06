@@ -5,37 +5,43 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.BaseViewHolder
+import ir.vbile.app.taravaz.common.TarAvazListAdapter
 import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.extentions.implementSpringAnimationTrait
 import ir.vbile.app.taravaz.services.ImageLoadingService
-import kotlinx.android.synthetic.main.item_track_type1.view.*
+import kotlinx.android.synthetic.main.item_track_type1.view.ivCover
+import kotlinx.android.synthetic.main.item_track_type1.view.tvArtistName
+import kotlinx.android.synthetic.main.item_track_type1.view.tvTitle
+import kotlinx.android.synthetic.main.item_track_type2.view.*
 import org.koin.java.KoinJavaComponent.inject
 
 class TrackAdapter(
     @LayoutRes val layoutId: Int = R.layout.item_track_type1,
     private val springAnimationTraitStatus: Boolean
-) : ListAdapter<Track, BaseViewHolder<Track>>(diffUtil) {
+) : TarAvazListAdapter<Track, BaseViewHolder<Track, Int>, Int>(diffUtil) {
     val imageLoadingService: ImageLoadingService by inject(ImageLoadingService::class.java)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Track> =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Track, Int> =
         LayoutInflater.from(parent.context).run {
-            TrackViewHolder(inflate(layoutId, parent, false))
+            TrackViewHolder(currentList, inflate(layoutId, parent, false))
         }
 
-    override fun onBindViewHolder(holder: BaseViewHolder<Track>, position: Int) =
-        holder.bind(holder.itemView, getItem(position))
+    override fun onBindViewHolder(holder: BaseViewHolder<Track, Int>, position: Int) = holder.bind()
 
-    inner class TrackViewHolder(itemView: View) : BaseViewHolder<Track>(itemView) {
-        override fun bind(itemView: View, item: Track) {
+    inner class TrackViewHolder(list: List<Track>, itemView: View) :
+        BaseViewHolder<Track, Int>(list, itemView, onItemEventListener) {
+        override fun bind(position: Int, item: Track) {
             itemView.apply {
                 tvTitle.text = item.title
                 tvArtistName.text = item.songWriter
                 imageLoadingService.load(ivCover, item.cover)
                 if (springAnimationTraitStatus)
                     implementSpringAnimationTrait()
+                btnShowMore.setOnClickListener {
+                    onMoreBtnClickListener.invoke(item)
+                }
             }
         }
     }
@@ -50,4 +56,8 @@ class TrackAdapter(
         }
     }
 
+    lateinit var onMoreBtnClickListener: (Track) -> Unit
+    fun setOnMoreBtnListener(callback: (Track) -> Unit) {
+        onMoreBtnClickListener = callback
+    }
 }

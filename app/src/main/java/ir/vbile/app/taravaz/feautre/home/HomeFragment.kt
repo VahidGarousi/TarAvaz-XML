@@ -9,16 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.snackbar.Snackbar
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazFragment
-import ir.vbile.app.taravaz.extentions.convertDpToPixel
+import ir.vbile.app.taravaz.data.Track
+import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import kotlinx.android.synthetic.main.base_track_row.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 
 
-class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
+class HomeFragment : TarAvazFragment(R.layout.fragment_home), ItemEventListener<Track, Int> {
     val vm: HomeVM by viewModel()
     lateinit var bannerSliderAdapter: BannerSliderAdapter
     val sliderHandler: Handler = HandlerCompat.createAsync(Looper.getMainLooper())
@@ -26,17 +28,17 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         subscribeToObservers()
         setUpSlider()
-        setUpTrackAdapter()
         rowNewest.btnViewAll.setOnClickListener {
             longToast("مشاهده همه")
         }
         rowPopular.btnViewAll.setOnClickListener {
             longToast("همه مشاهده")
         }
-    }
-
-    private fun setUpTrackAdapter() {
-
+        rowNewest.setOnItemEventListener(this)
+        rowPopular.setOnItemEventListener(this)
+        rowPopular.setOnMoreEventListener {
+            Snackbar.make(this.requireView(), it.songWriter, Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     private fun setUpSlider() {
@@ -92,5 +94,13 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home) {
             rowNewest.submitList(it)
             rowPopular.submitList(it)
         }
+    }
+
+    override fun onClick(item: Track, position: Int) {
+        toast(item.title)
+    }
+
+    override fun onLongClick(item: Track, position: Int) {
+        toast("آیتم ${item.songWriter} انتخاب شد")
     }
 }

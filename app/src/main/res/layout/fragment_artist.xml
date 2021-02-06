@@ -7,68 +7,65 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="16dp">
+            android:layout_height="wrap_content">
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="250dp"
+                android:layout_margin="24dp">
 
-                <EditText
-                    android:id="@+id/etKeyword"
+                <ir.vbile.app.taravaz.view.TarAvazImageView
                     android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/background_et_search"
-                    android:hint="@string/value_search"
-                    android:inputType="text"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="16dp"
-                    android:textAlignment="viewStart"
-                    android:textColor="?colorOnSurface"
-                    android:textColorHint="?android:textColorSecondary"
-                    android:textSize="15sp" />
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    app:actualImageResource="@drawable/artist"
+                    app:actualImageScaleType="fitXY"
+                    app:viewAspectRatio="1" />
 
-                <ImageView
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#B3060837" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end|center_vertical"
-                    android:layout_marginEnd="38dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:srcCompat="@drawable/ic_search" />
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <ir.vbile.app.taravaz.view.TarAvazImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        app:actualImageResource="@drawable/artist"
+                        app:roundAsCircle="true"
+                        app:viewAspectRatio="3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/reza_bahram"
+                        android:textAppearance="?textAppearanceHeadline5" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/genre_title"
+                        android:textAppearance="?textAppearanceBody1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/song_count"
+                        android:textAppearance="?textAppearanceBody2" />
+                </LinearLayout>
             </FrameLayout>
-
-            <ir.vbile.app.taravaz.view.cusom.artist.ArtistsView
-                android:id="@+id/rowSuggestedArtists"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                app:av_springAnimationTraitStatus="true"
-                app:av_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:av_orientation="horizontal"
-                app:av_rowTitle="@string/suggested"
-                app:av_viewType="@layout/item_artist_type1" />
-
-            <ir.vbile.app.taravaz.view.cusom.artist.ArtistsView
-                android:id="@+id/rowArtists"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                app:av_springAnimationTraitStatus="true"
-                app:av_layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:av_rowTitle="@string/suggested"
-                app:av_spanCount="3"
-                app:av_viewType="@layout/item_artist_type2" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

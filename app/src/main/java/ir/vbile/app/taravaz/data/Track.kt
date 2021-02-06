@@ -1,7 +1,10 @@
 package ir.vbile.app.taravaz.data
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
+@Parcelize
 data class Track(
     val id: Int,
     val title: String,
@@ -13,4 +16,4 @@ data class Track(
     val genre: String,
     val songWriter: String,
     val cover: String
-)
+) : Parcelable

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="16dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/etKeyword"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/background_et_search"
+                    android:hint="@string/value_search"
+                    android:inputType="text"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="16dp"
+                    android:textAlignment="viewStart"
+                    android:textColor="?colorOnSurface"
+                    android:textColorHint="?android:textColorSecondary"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="38dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:srcCompat="@drawable/ic_search" />
+            </FrameLayout>
+
+            <ir.vbile.app.taravaz.view.cusom.artist.ArtistsView
+                android:id="@+id/rowSuggestedArtists"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:av_springAnimationTraitStatus="true"
+                app:av_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:av_orientation="horizontal"
+                app:av_rowTitle="@string/suggested"
+                app:av_viewType="@layout/item_artist_type1" />
+
+            <ir.vbile.app.taravaz.view.cusom.artist.ArtistsView
+                android:id="@+id/rowArtists"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:av_springAnimationTraitStatus="true"
+                app:av_layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:av_rowTitle="@string/suggested"
+                app:av_spanCount="3"
+                app:av_viewType="@layout/item_artist_type2" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
