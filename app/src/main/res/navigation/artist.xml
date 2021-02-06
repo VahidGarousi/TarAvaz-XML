@@ -19,7 +19,7 @@
         android:name="ir.vbile.app.taravaz.feautre.artist.ArtistFragment"
         android:label="ArtistFragment" >
         <argument
-            android:name="wartist"
+            android:name="artist"
             app:argType="ir.vbile.app.taravaz.data.Artist" />
     </fragment>
 </navigation>

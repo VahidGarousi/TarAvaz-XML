@@ -2,6 +2,7 @@ package ir.vbile.app.taravaz.feautre.artist.list
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazFragment
 import ir.vbile.app.taravaz.data.Artist
@@ -23,7 +24,8 @@ class ArtistsFragment : TarAvazFragment(R.layout.fragment_artists), ItemEventLis
     }
 
     override fun onClick(item: Artist, position: Int) {
-
+        val action = ArtistsFragmentDirections.actionArtistsFragmentToArtistFragment(item)
+        findNavController().navigate(action)
     }
 
     override fun onLongClick(item: Artist, position: Int) {
