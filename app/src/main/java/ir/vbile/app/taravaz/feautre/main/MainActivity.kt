@@ -60,12 +60,8 @@ class MainActivity : TarAvazActivity() {
         })
         currentNavController = controller
     }
-
-    private val destinations = mutableListOf<Int>()
-
     private fun setUpToolbar(navController: NavController?) {
         navController?.addOnDestinationChangedListener { _, destination, _ ->
-            destinations.add(destination.id)
             when (destination.id) {
                 R.id.homeFragment -> {
                     runOnUiThread {
