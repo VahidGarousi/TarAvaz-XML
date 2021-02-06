@@ -12,7 +12,7 @@ import androidx.viewpager2.widget.ViewPager2
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazFragment
 import ir.vbile.app.taravaz.extentions.convertDpToPixel
-import kotlinx.android.synthetic.main.base_item_row.view.*
+import kotlinx.android.synthetic.main.base_track_row.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.math.abs

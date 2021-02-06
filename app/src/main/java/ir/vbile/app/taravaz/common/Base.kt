@@ -1,6 +1,7 @@
 package ir.vbile.app.taravaz.common
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,14 +44,20 @@ interface TarAvazView {
 }
 
 abstract class TarAvazFragment(
-    @LayoutRes layoutId: Int
-) : Fragment(layoutId), TarAvazView {
+    @LayoutRes val layoutRes: Int
+) : Fragment(), TarAvazView {
     override val rootView: CoordinatorLayout?
         get() = view as CoordinatorLayout?
 
     override val viewContext: Context?
         get() = context
 
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? = inflater.inflate(layoutRes, container, false)
 
     fun showBackBtn(shouldShow: Boolean) {
         rootView?.let {

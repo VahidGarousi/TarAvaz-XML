@@ -47,4 +47,7 @@
     <string name="sortPopular">پربازدیدترین</string>
     <string name="sortPriceHighToLow">گرانترین</string>
     <string name="sortPriceLowToHigh">ارزانترین</string>
+    <string name="artists">هنرمندان</string>
+    <string name="suggested">پیشنهادی</string>
+    <string name="latest_albums">آلبوم های اخیر</string>
 </resources>

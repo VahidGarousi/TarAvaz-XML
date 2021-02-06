@@ -1,4 +1,4 @@
-package ir.vbile.app.taravaz.feautre.home
+package ir.vbile.app.taravaz.view.cusom.track
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +11,11 @@ import ir.vbile.app.taravaz.common.BaseViewHolder
 import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.extentions.implementSpringAnimationTrait
 import ir.vbile.app.taravaz.services.ImageLoadingService
-import kotlinx.android.synthetic.main.item_song_type1.view.*
+import kotlinx.android.synthetic.main.item_track_type1.view.*
 import org.koin.java.KoinJavaComponent.inject
 
 class TrackAdapter(
-    @LayoutRes val layoutId: Int = R.layout.item_song_type1,
+    @LayoutRes val layoutId: Int = R.layout.item_track_type1,
     private val springAnimationTraitStatus: Boolean
 ) : ListAdapter<Track, BaseViewHolder<Track>>(diffUtil) {
     val imageLoadingService: ImageLoadingService by inject(ImageLoadingService::class.java)

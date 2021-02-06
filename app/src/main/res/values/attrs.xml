@@ -6,19 +6,53 @@
         <attr name="ta_shouldShowBackBtn" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="BaseItemRow">
-        <attr name="bir_rowTitle" format="string" />
-        <attr name="bir_viewAllText" format="string" />
-        <attr name="bir_viewType" format="reference" />
-        <attr name="bir_layoutManager" format="enum">
+    <declare-styleable name="TrackView">
+        <attr name="tv_rowTitle" format="string" />
+        <attr name="tv_viewAllText" format="string" />
+        <attr name="tv_viewType" format="reference" />
+        <attr name="tv_layoutManager" format="enum">
             <enum name="androidx.recyclerview.widget.LinearLayoutManager" value="0" />
             <enum name="androidx.recyclerview.widget.GridLayoutManager" value="1" />
             <enum name="androidx.recyclerview.widget.StaggeredGridLayoutManager" value="2" />
         </attr>
-        <attr name="bir_orientation">
+        <attr name="tv_orientation">
             <enum name="horizontal" value="0" />
             <enum name="vertical" value="1" />
         </attr>
-        <attr name="springAnimationTraitStatus" format="boolean" />
+        <attr name="tv_springAnimationTraitStatus" format="boolean" />
+        <attr name="track_showMoreBtn" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ArtistsView">
+        <attr name="av_rowTitle" format="string" />
+        <attr name="av_viewAllText" format="string" />
+        <attr name="av_viewType" format="reference" />
+        <attr name="av_layoutManager" format="enum">
+            <enum name="androidx.recyclerview.widget.LinearLayoutManager" value="0" />
+            <enum name="androidx.recyclerview.widget.GridLayoutManager" value="1" />
+            <enum name="androidx.recyclerview.widget.StaggeredGridLayoutManager" value="2" />
+        </attr>
+        <attr name="av_orientation">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="av_springAnimationTraitStatus" format="boolean" />
+    </declare-styleable>
+
+
+    <declare-styleable name="AlbumsView">
+        <attr name="album_rowTitle" format="string" />
+        <attr name="album_viewAllText" format="string" />
+        <attr name="album_viewType" format="reference" />
+        <attr name="album_layoutManager" format="enum">
+            <enum name="androidx.recyclerview.widget.LinearLayoutManager" value="0" />
+            <enum name="androidx.recyclerview.widget.GridLayoutManager" value="1" />
+            <enum name="androidx.recyclerview.widget.StaggeredGridLayoutManager" value="2" />
+        </attr>
+        <attr name="album_orientation">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="album_springAnimationTraitStatus" format="boolean" />
     </declare-styleable>
 </resources>
