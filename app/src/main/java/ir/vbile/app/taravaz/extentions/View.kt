@@ -68,7 +68,6 @@ fun View.implementSpringAnimationTrait() {
                 scaleYAnim.spring.stiffness = SpringForce.STIFFNESS_LOW
                 scaleYAnim.spring.dampingRatio = SpringForce.DAMPING_RATIO_LOW_BOUNCY
                 scaleYAnim.start()
-                return@setOnTouchListener false
             }
             MotionEvent.ACTION_UP,
             MotionEvent.ACTION_CANCEL -> {

@@ -23,6 +23,7 @@ class ArtistsFragment : TarAvazFragment(R.layout.fragment_artists), ItemEventLis
     }
 
     override fun onClick(item: Artist, position: Int) {
+
     }
 
     override fun onLongClick(item: Artist, position: Int) {
