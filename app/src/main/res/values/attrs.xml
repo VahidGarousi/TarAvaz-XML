@@ -56,4 +56,21 @@
         </attr>
         <attr name="album_springAnimationTraitStatus" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="GenresView">
+        <attr name="genre_rowTitle" format="string" />
+        <attr name="genre_viewAllText" format="string" />
+        <attr name="genre_viewType" format="reference" />
+        <attr name="genre_layoutManager" format="enum">
+            <enum name="androidx.recyclerview.widget.LinearLayoutManager" value="0" />
+            <enum name="androidx.recyclerview.widget.GridLayoutManager" value="1" />
+            <enum name="androidx.recyclerview.widget.StaggeredGridLayoutManager" value="2" />
+        </attr>
+        <attr name="genre_orientation">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="genre_springAnimationTraitStatus" format="boolean" />
+        <attr name="genre_spanCount" format="integer" />
+    </declare-styleable>
 </resources>
