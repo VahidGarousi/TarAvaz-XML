@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.BaseViewHolder
+import ir.vbile.app.taravaz.common.TarAvazListAdapter
 import ir.vbile.app.taravaz.data.Artist
 import ir.vbile.app.taravaz.extentions.implementSpringAnimationTrait
 import ir.vbile.app.taravaz.services.ImageLoadingService
@@ -17,19 +17,20 @@ import org.koin.java.KoinJavaComponent.inject
 class ArtistAdapter(
     @LayoutRes val layoutId: Int = R.layout.item_artist_type1,
     private val springAnimationTraitStatus: Boolean
-) : ListAdapter<Artist, BaseViewHolder<Artist>>(diffUtil) {
+) : TarAvazListAdapter<Artist, BaseViewHolder<Artist, Int>, Int>(diffUtil) {
     val imageLoadingService: ImageLoadingService by inject(ImageLoadingService::class.java)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Artist> =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Artist, Int> =
         LayoutInflater.from(parent.context).run {
-            ArtistViewHolder(inflate(layoutId, parent, false))
+            ArtistViewHolder(currentList, inflate(layoutId, parent, false))
         }
 
-    override fun onBindViewHolder(holder: BaseViewHolder<Artist>, position: Int) =
-        holder.bind(holder.itemView, getItem(position))
+    override fun onBindViewHolder(holder: BaseViewHolder<Artist, Int>, position: Int) =
+        holder.bind()
 
-    inner class ArtistViewHolder(itemView: View) : BaseViewHolder<Artist>(itemView) {
-        override fun bind(itemView: View, item: Artist) {
+    inner class ArtistViewHolder(list: List<Artist>, itemView: View) :
+        BaseViewHolder<Artist, Int>(list, itemView, onItemEventListener) {
+        override fun bind(position: Int, item: Artist) {
             itemView.apply {
                 tvName.text = item.name
                 imageLoadingService.load(ivCover, item.image)
@@ -48,5 +49,4 @@ class ArtistAdapter(
                 oldItem.id == newItem.id
         }
     }
-
 }

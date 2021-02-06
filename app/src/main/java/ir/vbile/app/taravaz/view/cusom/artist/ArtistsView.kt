@@ -9,18 +9,18 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.data.Artist
 import ir.vbile.app.taravaz.extentions.getEnum
+import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import ir.vbile.app.taravaz.view.cusom.track.BirLayoutManager
 import ir.vbile.app.taravaz.view.cusom.track.BirOrientation
 import kotlinx.android.synthetic.main.base_artist_row.view.*
 
-class ArtistsView @JvmOverloads constructor(
+open class ArtistsView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
     private val artistAdapter: ArtistAdapter
     fun submitList(it: List<Artist>?) {
         artistAdapter.submitList(it)
     }
-
     init {
         inflate(context, R.layout.base_artist_row, this)
         context.obtainStyledAttributes(attrs, R.styleable.ArtistsView).apply {
@@ -58,5 +58,12 @@ class ArtistsView @JvmOverloads constructor(
                 recycle()
             }
         }
+    }
+
+    private lateinit var onItemEventListener: ItemEventListener<Artist, Int>
+    @JvmName("setOnItemEventListener1")
+    fun setOnItemEventListener(onItemEventListener: ItemEventListener<Artist, Int>){
+        this.onItemEventListener = onItemEventListener
+        artistAdapter.setOnItemEventListener(onItemEventListener)
     }
 }

@@ -48,16 +48,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tv_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:tv_orientation="horizontal" />
+                app:tv_orientation="horizontal"
+                app:tv_springAnimationTraitStatus="true" />
 
             <ir.vbile.app.taravaz.view.cusom.track.TrackView
                 android:id="@+id/rowPopular"
                 android:layout_width="match_parent"
-                app:tv_springAnimationTraitStatus="true"
                 android:layout_height="wrap_content"
                 app:tv_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:tv_orientation="vertical"
                 app:tv_rowTitle="@string/popular_songs"
+                app:tv_springAnimationTraitStatus="true"
                 app:tv_viewType="@layout/item_track_type2" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

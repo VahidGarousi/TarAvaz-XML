@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.BaseViewHolder
+import ir.vbile.app.taravaz.common.TarAvazListAdapter
 import ir.vbile.app.taravaz.data.Album
 import ir.vbile.app.taravaz.extentions.implementSpringAnimationTrait
 import ir.vbile.app.taravaz.services.ImageLoadingService
@@ -18,19 +18,19 @@ class AlbumAdapter constructor(
     @LayoutRes
     val layoutId: Int = R.layout.item_album_type1,
     private val springAnimationTraitStatus: Boolean
-) : ListAdapter<Album, BaseViewHolder<Album>>(diffUtil) {
+) : TarAvazListAdapter<Album, BaseViewHolder<Album, Int>, Int>(diffUtil) {
     val imageLoadingService: ImageLoadingService by inject(ImageLoadingService::class.java)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Album> =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Album, Int> =
         LayoutInflater.from(parent.context).run {
-            AlbumViewHolder(inflate(layoutId, parent, false))
+            AlbumViewHolder(currentList, inflate(layoutId, parent, false))
         }
 
-    override fun onBindViewHolder(holder: BaseViewHolder<Album>, position: Int) =
-        holder.bind(holder.itemView, getItem(position))
+    override fun onBindViewHolder(holder: BaseViewHolder<Album, Int>, position: Int) = holder.bind()
 
-    inner class AlbumViewHolder(itemView: View) : BaseViewHolder<Album>(itemView) {
-        override fun bind(itemView: View, item: Album) {
+    inner class AlbumViewHolder(currentList: List<Album>, itemView: View) :
+        BaseViewHolder<Album, Int>(currentList, itemView, onItemEventListener) {
+        override fun bind(position: Int, item: Album) {
             itemView.apply {
                 tvAlbumName.text = item.name
                 tvArtistName.text = item.name

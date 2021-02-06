@@ -11,12 +11,18 @@ import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.extentions.getEnum
 import ir.vbile.app.taravaz.extentions.setVisibleOrGone
+import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import kotlinx.android.synthetic.main.base_track_row.view.*
+import kotlinx.android.synthetic.main.item_track_type2.view.*
 
 class TrackView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
+    private lateinit var currentList: List<Track>
     fun submitList(it: List<Track>?) {
+        it?.let {
+            currentList = it
+        }
         trackAdapter.submitList(it)
     }
 
@@ -64,8 +70,16 @@ class TrackView @JvmOverloads constructor(
         }
     }
 
-    interface OnTrackClicked {
-        fun onTrackClicked(track: Track)
+    private lateinit var onItemEventListener: ItemEventListener<Track, Int>
+    fun setOnItemEventListener(onItemEventListener: ItemEventListener<Track, Int>) {
+        this.onItemEventListener = onItemEventListener
+        trackAdapter.setOnItemEventListener(onItemEventListener)
+    }
+
+    protected lateinit var onMoreBtnClickListener: (Track) -> Unit
+    fun setOnMoreEventListener(callback: (Track) -> Unit) {
+        this.onMoreBtnClickListener = callback
+        trackAdapter.setOnMoreBtnListener(callback)
     }
 }
 

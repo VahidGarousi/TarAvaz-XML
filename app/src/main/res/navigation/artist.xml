@@ -3,10 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/artist"
-    app:startDestination="@id/artistFragment">
+    app:startDestination="@id/artistsFragment">
+    <fragment
+        tools:layout="@layout/fragment_artists"
+        android:id="@+id/artistsFragment"
+        android:name="ir.vbile.app.taravaz.feautre.artist.list.ArtistsFragment"
+        android:label="ArtistFragment" >
+        <action
+            android:id="@+id/action_artistsFragment_to_artistFragment"
+            app:destination="@id/artistFragment" />
+    </fragment>
     <fragment
         tools:layout="@layout/fragment_artist"
         android:id="@+id/artistFragment"
         android:name="ir.vbile.app.taravaz.feautre.artist.ArtistFragment"
-        android:label="ArtistFragment" />
+        android:label="ArtistFragment" >
+        <argument
+            android:name="artist"
+            app:argType="ir.vbile.app.taravaz.data.Artist" />
+    </fragment>
 </navigation>

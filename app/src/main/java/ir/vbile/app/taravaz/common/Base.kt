@@ -13,7 +13,11 @@ import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import ir.vbile.app.taravaz.R
+import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
@@ -72,8 +76,7 @@ abstract class TarAvazFragment(
     }
 }
 
-abstract class TarAvazActivity(
-) : AppCompatActivity(), TarAvazView {
+abstract class TarAvazActivity : AppCompatActivity(), TarAvazView {
     override val rootView: CoordinatorLayout?
         get() {
             val viewGroup = window.decorView.findViewById<ViewGroup>(android.R.id.content)
@@ -92,6 +95,16 @@ abstract class TarAvazActivity(
 
 }
 
-abstract class TarAvazViewModel() : ViewModel() {
+abstract class TarAvazViewModel : ViewModel() {
     var progressBarLiveData: MutableLiveData<Boolean> = MutableLiveData()
+}
+
+
+abstract class TarAvazListAdapter<T, VH : RecyclerView.ViewHolder, E : Number>(diffUtil: DiffUtil.ItemCallback<T>) :
+    ListAdapter<T, VH>(diffUtil) {
+    protected  var onItemEventListener: ItemEventListener<T, E>? = null
+    @JvmName("setOnItemEventListener1")
+    fun setOnItemEventListener(onItemEventListener: ItemEventListener<T,E>){
+        this.onItemEventListener = onItemEventListener
+    }
 }

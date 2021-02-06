@@ -3,8 +3,6 @@ package ir.vbile.app.taravaz.feautre.main
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazActivity
@@ -62,6 +60,7 @@ class MainActivity : TarAvazActivity() {
         })
         currentNavController = controller
     }
+
     private val destinations = mutableListOf<Int>()
 
     private fun setUpToolbar(navController: NavController?) {
@@ -78,7 +77,7 @@ class MainActivity : TarAvazActivity() {
                     runOnUiThread {
                         toolbar.setTitle(getString(R.string.track))
                         toolbar.showBackBtn(true) {
-                          onBackPressed()
+                            onBackPressed()
                         }
                     }
                 }
@@ -121,6 +120,16 @@ class MainActivity : TarAvazActivity() {
                             bottom = 0f
                         )
                         toolbar.setVisibleOrGone(false)
+                        bottomNavigationMain.setVisibleOrGone(false)
+                    }
+                }
+                R.id.artistFragment -> {
+                    runOnUiThread {
+                        navHostContainer.margin(
+                            top = 56f,
+                            bottom = 0f
+                        )
+                        toolbar.setVisibleOrGone(true)
                         bottomNavigationMain.setVisibleOrGone(false)
                     }
                 }

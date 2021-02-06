@@ -34,4 +34,10 @@
         android:text="@string/reza_bahram"
         android:textColor="#999AAB"
         android:textAppearance="?textAppearanceBody2" />
+
+    <ImageView
+        android:id="@+id/btnShowMore"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone" />
 </LinearLayout>

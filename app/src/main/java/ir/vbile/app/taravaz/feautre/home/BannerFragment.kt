@@ -27,7 +27,6 @@ class BannerFragment : Fragment() {
             container,
             false
         ) as TarAvazImageView
-        imageView.implementSpringAnimationTrait()
         val banner = requireArguments()
             .getParcelable<Banner>(EXTRA_KEY_DATA)
             ?: throw IllegalStateException("Banner cannot be null")
