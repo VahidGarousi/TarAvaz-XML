@@ -21,9 +21,10 @@
 
                 <ir.vbile.app.taravaz.view.TarAvazImageView
                     android:layout_width="match_parent"
+                    android:id="@+id/ivArtistBackground"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
-                    app:actualImageResource="@drawable/artist"
+                    app:placeholderImage="@drawable/artist"
                     app:actualImageScaleType="fitXY"
                     app:roundedCornerRadius="8dp"
                     app:viewAspectRatio="1" />
@@ -52,6 +53,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
+                        android:id="@+id/tvName"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="@string/reza_bahram"
@@ -60,6 +62,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/tvGenre"
                         android:layout_gravity="center_horizontal"
                         android:text="@string/genre_title"
                         android:textAppearance="?textAppearanceBody1" />

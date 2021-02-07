@@ -102,9 +102,10 @@ abstract class TarAvazViewModel : ViewModel() {
 
 abstract class TarAvazListAdapter<T, VH : RecyclerView.ViewHolder, E : Number>(diffUtil: DiffUtil.ItemCallback<T>) :
     ListAdapter<T, VH>(diffUtil) {
-    protected  var onItemEventListener: ItemEventListener<T, E>? = null
+    protected var onItemEventListener: ItemEventListener<T, E>? = null
+
     @JvmName("setOnItemEventListener1")
-    fun setOnItemEventListener(onItemEventListener: ItemEventListener<T,E>){
+    fun setOnItemEventListener(onItemEventListener: ItemEventListener<T, E>) {
         this.onItemEventListener = onItemEventListener
     }
 }
