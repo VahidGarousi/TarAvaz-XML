@@ -20,12 +20,12 @@
                 android:background="@drawable/background_artist_screen">
 
                 <ir.vbile.app.taravaz.view.TarAvazImageView
-                    android:layout_width="match_parent"
                     android:id="@+id/ivArtistBackground"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
-                    app:placeholderImage="@drawable/artist"
                     app:actualImageScaleType="fitXY"
+                    app:placeholderImage="@drawable/artist"
                     app:roundedCornerRadius="8dp"
                     app:viewAspectRatio="1" />
 
@@ -52,17 +52,17 @@
                         app:viewAspectRatio="3" />
 
                     <TextView
-                        android:layout_width="wrap_content"
                         android:id="@+id/tvName"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="@string/reza_bahram"
                         android:textAppearance="?textAppearanceHeadline5" />
 
                     <TextView
+                        android:id="@+id/tvGenre"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/tvGenre"
                         android:layout_gravity="center_horizontal"
                         android:text="@string/genre_title"
                         android:textAppearance="?textAppearanceBody1" />
@@ -86,12 +86,14 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnTracks"
+                    style="@style/ArtistMaterialButtonGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/track" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnBiography"
+                    style="@style/ArtistMaterialButtonGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/biography" />
