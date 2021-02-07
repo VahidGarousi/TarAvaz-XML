@@ -23,4 +23,10 @@
         <item name="backgroundTint">@color/mtrl_btn_text_btn_bg_color_selector</item>
         <item name="rippleColor">@color/mtrl_btn_text_btn_ripple_color</item>
     </style>
+    <style name="ArtistMaterialButtonGroup" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/mtrl_btn_stroke_color_selector</item>
+        <item name="strokeWidth">@dimen/mtrl_btn_stroke_size</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
 </resources>

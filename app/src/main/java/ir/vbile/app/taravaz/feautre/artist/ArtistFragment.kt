@@ -42,6 +42,12 @@ class ArtistFragment : TarAvazFragment(R.layout.fragment_artist), ItemEventListe
         vm.tracks.observe(viewLifecycleOwner) {
             rowTracks.submitList(it)
         }
+        btnTracks.setOnClickListener {
+            longToast("ترانه ها کلیک شد")
+        }
+        btnBiography.setOnClickListener {
+            longToast("بیوگرافی کلیک شد")
+        }
     }
 
     override fun onClick(item: Track, position: Int) {
