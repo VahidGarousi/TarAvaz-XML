@@ -1,5 +1,6 @@
 package ir.vbile.app.taravaz.data.api
 
+import ir.vbile.app.taravaz.common.DataFactory
 import ir.vbile.app.taravaz.data.Track
 import java.util.*
 
@@ -27,6 +28,6 @@ data class ResTrack(
         track_address,
         genre,
         songWriter,
-        cover
+        cover, DataFactory.getSuggestedArtist()[0]
     )
 }

@@ -21,5 +21,20 @@
         <argument
             android:name="artist"
             app:argType="ir.vbile.app.taravaz.data.Artist" />
+        <action
+            android:id="@+id/action_artistFragment_to_playerFragment"
+            app:destination="@id/playerFragment" />
+    </fragment>
+
+    <fragment
+        tools:layout="@layout/fragment_player"
+        android:id="@+id/playerFragment"
+        android:name="ir.vbile.app.taravaz.feautre.player.PlayerFragment"
+        android:label="PlayerFragment" >
+        <argument
+            android:name="track"
+            app:argType="ir.vbile.app.taravaz.data.Track"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>

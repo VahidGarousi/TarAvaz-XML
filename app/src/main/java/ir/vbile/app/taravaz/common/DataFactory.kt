@@ -27,7 +27,7 @@ object DataFactory {
             App.appContext.getString(R.string.genre_love),
             App.appContext.getString(R.string.reza_bahram),
             "http://tabamusic.com/wp-content/uploads/2020/11/Reza-Bahram-Gole-Maryam.jpg"
-        ),
+        ,getSuggestedArtist()[0]),
         Track(
             2,
             "شهرزاد",
@@ -59,8 +59,8 @@ object DataFactory {
             "https://dls.music-fa.com/tagdl/99/Hojat%20Ashrafzade%20-%20Shahrzad%20(320).mp3",
             App.appContext.getString(R.string.genre_love),
             "حجت اشرف زاده",
-            "https://lh3.googleusercontent.com/proxy/gvNndGk42p1hl7Q3GJKO2PesttPLyFnBkiYY7tA69Tl8KV4vecTOSvcb-3PMzEluvfn-nz3BAE_hjBM5pG5aJpLcmvqLzH_9T5vKx2z0c4ximR_xWPYuA7NT5cNZAgRMmhxwDjZg"
-        ),
+            "https://lh3.googleusercontent.com/proxy/gvNndGk42p1hl7Q3GJKO2PesttPLyFnBkiYY7tA69Tl8KV4vecTOSvcb-3PMzEluvfn-nz3BAE_hjBM5pG5aJpLcmvqLzH_9T5vKx2z0c4ximR_xWPYuA7NT5cNZAgRMmhxwDjZg",
+            getSuggestedArtist()[3]),
         Track(
             3,
             "منو تو",
@@ -72,7 +72,7 @@ object DataFactory {
             App.appContext.getString(R.string.genre_love),
             "محسن ابراهیم زاده",
             "https://upmusics.com/wp-content/uploads/2019/01/450.jpg"
-        ),
+        ,getSuggestedArtist()[1]),
         Track(
             4,
             "بیا پیشم",
@@ -128,7 +128,7 @@ object DataFactory {
             App.appContext.getString(R.string.genre_love),
             "سینا درخشنده",
             "https://sedabaran.ir/wp-content/webp-express/webp-images/uploads/2021/01/sina_derakhshande_bia_pisham.jpg.webp"
-        ),
+        ,getSuggestedArtist()[2]),
         Track(
             5,
             "آواره",
@@ -140,7 +140,7 @@ object DataFactory {
             App.appContext.getString(R.string.genre_love),
             "راغب",
             "https://sedabaran.ir/wp-content/webp-express/webp-images/uploads/2021/01/ragheb_avareh.jpg.webp"
-        )
+        ,getSuggestedArtist()[3])
     )
 
     fun getSuggestedArtist(): List<Artist> = listOf(

@@ -2,16 +2,19 @@ package ir.vbile.app.taravaz.feautre.track
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.EXTRA_KEY_DATA
 import ir.vbile.app.taravaz.common.TarAvazFragment
+import ir.vbile.app.taravaz.data.Track
+import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import kotlinx.android.synthetic.main.base_track_row.view.*
 import kotlinx.android.synthetic.main.fragment_track.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class TracksFragment : TarAvazFragment(R.layout.fragment_track) {
+class TracksFragment : TarAvazFragment(R.layout.fragment_track) , ItemEventListener<Track,Int>{
 
     val vm: TrackVM by viewModel {
         parametersOf(
@@ -46,5 +49,14 @@ class TracksFragment : TarAvazFragment(R.layout.fragment_track) {
             list.addAll(it)
             rowLatest.submitList(list)
         }
+    }
+
+    override fun onClick(item: Track, position: Int) {
+        val action = TracksFragmentDirections.actionTrackFragmentToPlayerFragment(item)
+        findNavController().navigate(action)
+    }
+
+    override fun onLongClick(item: Track, position: Int) {
+        TODO("Not yet implemented")
     }
 }

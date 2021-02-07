@@ -2,11 +2,13 @@ package ir.vbile.app.taravaz.feautre.search
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.EXTRA_KEY_DATA
 import ir.vbile.app.taravaz.common.TarAvazFragment
 import ir.vbile.app.taravaz.data.Track
+import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import ir.vbile.app.taravaz.view.cusom.track.TrackAdapter
 import ir.vbile.app.taravaz.view.cusom.track.TrackView
 import kotlinx.android.synthetic.main.base_artist_row.view.*
@@ -15,7 +17,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 
-class SearchFragment : TarAvazFragment(R.layout.fragment_search) {
+class SearchFragment : TarAvazFragment(R.layout.fragment_search) , ItemEventListener<Track,Int> {
     val vm: SearchVM by viewModel {
         parametersOf(
             requireActivity().intent.getStringExtra(
@@ -56,5 +58,14 @@ class SearchFragment : TarAvazFragment(R.layout.fragment_search) {
         vm.suggestedTracks.observe(viewLifecycleOwner) {
             rowLatestTracks.submitList(it)
         }
+    }
+
+    override fun onClick(item: Track, position: Int) {
+        val action = SearchFragmentDirections.actionSearchFragmentToPlayerFragment(item)
+        findNavController().navigate(action)
+    }
+
+    override fun onLongClick(item: Track, position: Int) {
+        TODO("Not yet implemented")
     }
 }

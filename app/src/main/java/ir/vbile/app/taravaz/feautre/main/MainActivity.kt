@@ -102,6 +102,14 @@ class MainActivity : TarAvazActivity() {
                         }
                     }
                 }
+                R.id.playerFragment -> {
+                    runOnUiThread {
+                        toolbar.setTitle(getString(R.string.player))
+                        toolbar.showBackBtn(true) {
+                            onBackPressed()
+                        }
+                    }
+                }
             }
         }
     }
@@ -119,7 +127,8 @@ class MainActivity : TarAvazActivity() {
                         bottomNavigationMain.setVisibleOrGone(false)
                     }
                 }
-                R.id.artistFragment -> {
+                R.id.artistFragment,
+                R.id.playerFragment, -> {
                     runOnUiThread {
                         navHostContainer.margin(
                             top = 56f,
