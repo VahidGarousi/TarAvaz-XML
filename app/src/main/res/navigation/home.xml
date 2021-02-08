@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="ir.vbile.app.taravaz.feautre.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_playerFragment"
+            app:destination="@id/playerFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/splashFragment"
@@ -21,5 +25,16 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@+id/splashFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_player"
+        android:id="@+id/playerFragment"
+        android:name="ir.vbile.app.taravaz.feautre.player.PlayerFragment"
+        android:label="PlayerFragment" >
+        <argument
+            android:name="track"
+            app:argType="ir.vbile.app.taravaz.data.Track"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>

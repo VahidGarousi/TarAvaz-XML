@@ -23,10 +23,32 @@
         <item name="backgroundTint">@color/mtrl_btn_text_btn_bg_color_selector</item>
         <item name="rippleColor">@color/mtrl_btn_text_btn_ripple_color</item>
     </style>
+
     <style name="ArtistMaterialButtonGroup" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="strokeColor">@color/mtrl_btn_stroke_color_selector</item>
         <item name="strokeWidth">@dimen/mtrl_btn_stroke_size</item>
         <item name="backgroundTint">@android:color/transparent</item>
         <item name="cornerRadius">12dp</item>
+    </style>
+
+    <style name="LikeButtonStyle" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
+        <item name="useMaterialThemeColors">false</item>
+        <item name="android:minWidth">56dp</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="drawableEndCompat">@drawable/ic_like</item>
+        <item name="colorAccent">@color/white</item> <!-- for checked state -->
+        <item name="colorControlNormal">#595B86</item> <!-- for unchecked state -->
+        <item name="android:button">@null</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="PlayerTimerStyle" parent="Widget.MaterialComponents.Slider">
+        <item name="trackColorInactive">#00022E</item>
+        <item name="trackColorActive">@color/light_blue</item>
+<!--        <item name="trackColor">@color/white</item>-->
+        <item name="trackHeight">4dp</item>
+        <item name="thumbColor">@color/white</item>
     </style>
 </resources>

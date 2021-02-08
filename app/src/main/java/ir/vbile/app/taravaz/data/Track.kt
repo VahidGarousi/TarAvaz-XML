@@ -15,5 +15,6 @@ data class Track(
     val trackAddress: String,
     val genre: String,
     val songWriter: String,
-    val cover: String
+    val cover: String,
+    val artist: Artist
 ) : Parcelable

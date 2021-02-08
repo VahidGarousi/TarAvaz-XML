@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import androidx.core.os.HandlerCompat
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
@@ -97,7 +98,8 @@ class HomeFragment : TarAvazFragment(R.layout.fragment_home), ItemEventListener<
     }
 
     override fun onClick(item: Track, position: Int) {
-        toast(item.title)
+        val action = HomeFragmentDirections.actionHomeFragmentToPlayerFragment(item)
+        findNavController().navigate(action)
     }
 
     override fun onLongClick(item: Track, position: Int) {
