@@ -3,6 +3,7 @@ package ir.vbile.app.taravaz.feautre.search
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazViewModel
 import ir.vbile.app.taravaz.data.Album
@@ -10,14 +11,16 @@ import ir.vbile.app.taravaz.data.Artist
 import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.data.repo.AlbumRepository
 import ir.vbile.app.taravaz.data.repo.ArtistRepository
-import ir.vbile.app.taravaz.data.repo.TrackRepository
+import ir.vbile.app.taravaz.data.repo.SongRepository
 import ir.vbile.app.taravaz.extentions.asyncNetworkRequest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchVM constructor(
+@HiltViewModel
+class SearchVM @Inject constructor(
     private val artistRepository: ArtistRepository,
     private val albumRepository: AlbumRepository,
-    private val trackRepository: TrackRepository
+    private val songRepository: SongRepository
 ) : TarAvazViewModel() {
     var sort: Int = 0
     val selectedSortTitle: MutableLiveData<Int> = MutableLiveData()
@@ -63,7 +66,7 @@ class SearchVM constructor(
 
     private fun getSuggestedTracks() {
         viewModelScope.launch {
-            trackRepository.getAll()
+            songRepository.getAll()
                 .asyncNetworkRequest()
                 .subscribe { tracks ->
                     val list = tracks.toMutableList()

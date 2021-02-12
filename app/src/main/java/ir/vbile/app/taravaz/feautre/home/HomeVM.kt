@@ -1,23 +1,26 @@
 package ir.vbile.app.taravaz.feautre.home
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.vbile.app.taravaz.common.TarAvazViewModel
 import ir.vbile.app.taravaz.data.Banner
 import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.data.repo.BannerRepository
-import ir.vbile.app.taravaz.data.repo.TrackRepository
+import ir.vbile.app.taravaz.data.repo.SongRepository
 import ir.vbile.app.taravaz.extentions.asyncNetworkRequest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeVM constructor(
+@HiltViewModel
+class HomeVM @Inject constructor(
     private val bannerRepository: BannerRepository,
-    private val trackRepository: TrackRepository,
+    private val songRepository: SongRepository,
 ) : TarAvazViewModel() {
     private val _banners: MutableLiveData<List<Banner>> = MutableLiveData()
     val banners: LiveData<List<Banner>> = _banners
-
     init {
         getBanners()
         getTracks()
@@ -39,7 +42,7 @@ class HomeVM constructor(
 
     private fun getTracks() {
         viewModelScope.launch {
-            trackRepository.getAll()
+            songRepository.getAll()
                 .asyncNetworkRequest()
                 .subscribe { tracks ->
                     _tracks.postValue(tracks)

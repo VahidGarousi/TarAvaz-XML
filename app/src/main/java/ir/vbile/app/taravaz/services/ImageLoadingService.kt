@@ -1,8 +1,8 @@
 package ir.vbile.app.taravaz.services
 
-import ir.vbile.app.taravaz.view.TarAvazImageView
+import android.widget.ImageView
 
 
 interface ImageLoadingService {
-    fun load(imageView: TarAvazImageView, imageUrl: String)
+    fun load(imageView: ImageView, imageUrl: String?)
 }

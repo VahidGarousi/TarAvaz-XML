@@ -4,28 +4,26 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.taravaz.R
-import ir.vbile.app.taravaz.common.EXTRA_KEY_DATA
 import ir.vbile.app.taravaz.common.TarAvazFragment
 import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.view.cusom.ItemEventListener
-import ir.vbile.app.taravaz.view.cusom.track.TrackAdapter
-import ir.vbile.app.taravaz.view.cusom.track.TrackView
 import kotlinx.android.synthetic.main.base_artist_row.view.*
 import kotlinx.android.synthetic.main.fragment_search.*
-import org.koin.android.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
 
-
-class SearchFragment : TarAvazFragment(R.layout.fragment_search) , ItemEventListener<Track,Int> {
-    val vm: SearchVM by viewModel {
-        parametersOf(
-            requireActivity().intent.getStringExtra(
-                EXTRA_KEY_DATA
-            ) ?: 1
-        )
-    }
-
+@AndroidEntryPoint
+class SearchFragment : TarAvazFragment<SearchVM>(
+    R.layout.fragment_search,
+    SearchVM::class
+), ItemEventListener<Track, Int> {
+//    val vm: SearchVM by viewModel {
+//        parametersOf(
+//            requireActivity().intent.getStringExtra(
+//                EXTRA_KEY_DATA
+//            ) ?: 1
+//        )
+//    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rowArtists.btnViewAll.setOnClickListener {

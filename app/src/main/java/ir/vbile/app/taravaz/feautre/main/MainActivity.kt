@@ -4,13 +4,14 @@ import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazActivity
 import ir.vbile.app.taravaz.common.setupWithNavController
 import ir.vbile.app.taravaz.extentions.margin
 import ir.vbile.app.taravaz.extentions.setVisibleOrGone
 import kotlinx.android.synthetic.main.activity_main.*
-
+@AndroidEntryPoint
 class MainActivity : TarAvazActivity() {
     private var currentNavController: LiveData<NavController>? = null
 
@@ -29,6 +30,7 @@ class MainActivity : TarAvazActivity() {
         // BottomNavigationBar with Navigation
         setupBottomNavigationBar()
     }
+
 
     /**
      * Called on first creation and when restoring state.

@@ -5,28 +5,30 @@ import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.taravaz.R
-import ir.vbile.app.taravaz.common.EXTRA_KEY_DATA
 import ir.vbile.app.taravaz.common.TarAvazFragment
 import ir.vbile.app.taravaz.data.Track
-import ir.vbile.app.taravaz.feautre.home.HomeFragmentDirections
 import ir.vbile.app.taravaz.feautre.track.TrackVM
 import ir.vbile.app.taravaz.services.ImageLoadingService
 import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import kotlinx.android.synthetic.main.fragment_artist.*
-import org.koin.android.ext.android.inject
-import org.koin.android.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
+import javax.inject.Inject
 
-class ArtistFragment : TarAvazFragment(R.layout.fragment_artist), ItemEventListener<Track, Int> {
-    val vm: TrackVM by viewModel {
-        parametersOf(
-            requireActivity().intent.getStringExtra(
-                EXTRA_KEY_DATA
-            ) ?: 1
-        )
-    }
-    val imageLoadingService: ImageLoadingService by inject()
+@AndroidEntryPoint
+class ArtistFragment : TarAvazFragment<TrackVM>(
+    R.layout.fragment_artist,
+    TrackVM::class
+), ItemEventListener<Track, Int> {
+    //    val vm: TrackVM by viewModel {
+//        parametersOf(
+//            requireActivity().intent.getStringExtra(
+//                EXTRA_KEY_DATA
+//            ) ?: 1
+//        )
+//    }
+    @Inject
+    lateinit var imageLoadingService: ImageLoadingService
     override fun getViewLifecycleOwner(): LifecycleOwner = parentFragment ?: this
     private val args by navArgs<ArtistFragmentArgs>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

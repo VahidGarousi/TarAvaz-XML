@@ -6,6 +6,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
+        android:id="@+id/nsvGenre"
         android:layout_height="wrap_content">
 
         <ir.vbile.app.taravaz.view.cusom.genre.GenresView

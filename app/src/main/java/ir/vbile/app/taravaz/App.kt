@@ -5,22 +5,12 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import com.facebook.drawee.backends.pipeline.Fresco
-import ir.vbile.app.taravaz.data.repo.demo.*
-import ir.vbile.app.taravaz.data.repo.impl.*
-import ir.vbile.app.taravaz.data.repo.source.*
-import ir.vbile.app.taravaz.feautre.artist.ArtistVM
-import ir.vbile.app.taravaz.feautre.genre.GenreVM
-import ir.vbile.app.taravaz.feautre.home.HomeVM
-import ir.vbile.app.taravaz.feautre.search.SearchVM
-import ir.vbile.app.taravaz.feautre.track.TrackVM
-import ir.vbile.app.taravaz.services.FrescoImageLoadingServiceImpl
+import dagger.hilt.android.HiltAndroidApp
 import ir.vbile.app.taravaz.services.ImageLoadingService
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.viewmodel.dsl.viewModel
-import org.koin.core.context.startKoin
-import org.koin.dsl.module
 import timber.log.Timber
+import javax.inject.Inject
 
+@HiltAndroidApp
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
@@ -28,7 +18,7 @@ class App : Application() {
         Timber.plant(Timber.DebugTree())
         Fresco.initialize(this)
         AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
-        val myModules = module {
+        /*val myModules = module {
             single<ImageLoadingService> { FrescoImageLoadingServiceImpl() }
             factory {
                 if (BuildConfig.DEMO_MODE)
@@ -70,7 +60,7 @@ class App : Application() {
         startKoin {
             androidContext(this@App)
             modules(myModules)
-        }
+        }*/
     }
 
     companion object {

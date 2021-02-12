@@ -7,19 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
+import androidx.annotation.MainThread
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.createViewModelLazy
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import io.reactivex.disposables.CompositeDisposable
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
+import kotlin.reflect.KClass
+import androidx.appcompat.app.AppCompatActivity
 
 interface TarAvazView {
     val rootView: CoordinatorLayout?
@@ -47,9 +53,16 @@ interface TarAvazView {
     }
 }
 
-abstract class TarAvazFragment(
-    @LayoutRes val layoutRes: Int
+abstract class TarAvazFragment<VM : TarAvazViewModel>(
+    @LayoutRes val layoutRes: Int,
+    private val vmClass: KClass<VM>
 ) : Fragment(), TarAvazView {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(layoutRes, container, false)
+    }
+
     override val rootView: CoordinatorLayout?
         get() = view as CoordinatorLayout?
 
@@ -57,12 +70,15 @@ abstract class TarAvazFragment(
         get() = context
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(layoutRes, container, false)
+    @MainThread
+    private fun viewModels(
+        ownerProducer: () -> ViewModelStoreOwner = { this },
+        factoryProducer: (() -> ViewModelProvider.Factory)? = null
+    ) = createViewModelLazy(vmClass, { ownerProducer().viewModelStore }, factoryProducer)
 
+    open fun getViewModelStoreOwner(): ViewModelStoreOwner = this
+
+    protected val vm: VM by viewModels({ getViewModelStoreOwner() })
     fun showBackBtn(shouldShow: Boolean) {
         rootView?.let {
             viewContext?.let { _ ->
@@ -97,6 +113,11 @@ abstract class TarAvazActivity : AppCompatActivity(), TarAvazView {
 
 abstract class TarAvazViewModel : ViewModel() {
     var progressBarLiveData: MutableLiveData<Boolean> = MutableLiveData()
+    protected val compositeDisposable = CompositeDisposable()
+    override fun onCleared() {
+        compositeDisposable.clear()
+        super.onCleared()
+    }
 }
 
 

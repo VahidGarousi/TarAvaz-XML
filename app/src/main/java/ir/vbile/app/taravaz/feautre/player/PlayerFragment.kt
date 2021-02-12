@@ -3,15 +3,23 @@ package ir.vbile.app.taravaz.feautre.player
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
+import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazFragment
+import ir.vbile.app.taravaz.feautre.track.TrackVM
 import ir.vbile.app.taravaz.services.ImageLoadingService
 import kotlinx.android.synthetic.main.fragment_player.*
-import org.koin.android.ext.android.inject
+import javax.inject.Inject
 
-class PlayerFragment : TarAvazFragment(R.layout.fragment_player) {
+@AndroidEntryPoint
+class PlayerFragment : TarAvazFragment<TrackVM>(
+    R.layout.fragment_player,
+    TrackVM::class
+) {
     private val args by navArgs<PlayerFragmentArgs>()
-    val imageLoadingService: ImageLoadingService by inject()
+
+    @Inject
+    lateinit var imageLoadingService: ImageLoadingService
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         args.track?.let {

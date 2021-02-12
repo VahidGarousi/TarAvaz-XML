@@ -11,18 +11,21 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazFragment
 import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import kotlinx.android.synthetic.main.base_track_row.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 
-
-class HomeFragment : TarAvazFragment(R.layout.fragment_home), ItemEventListener<Track, Int> {
-    val vm: HomeVM by viewModel()
+@AndroidEntryPoint
+class HomeFragment : TarAvazFragment<HomeVM>(
+    R.layout.fragment_home,
+    HomeVM::class
+), ItemEventListener<Track, Int> {
+//    val vm: HomeVM by viewModel()
     lateinit var bannerSliderAdapter: BannerSliderAdapter
     val sliderHandler: Handler = HandlerCompat.createAsync(Looper.getMainLooper())
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
