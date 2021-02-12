@@ -10,18 +10,18 @@ import ir.vbile.app.taravaz.common.BaseViewHolder
 import ir.vbile.app.taravaz.common.TarAvazListAdapter
 import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.extentions.implementSpringAnimationTrait
+import ir.vbile.app.taravaz.extentions.loadImage
 import ir.vbile.app.taravaz.services.ImageLoadingService
 import kotlinx.android.synthetic.main.item_track_type1.view.ivCover
 import kotlinx.android.synthetic.main.item_track_type1.view.tvArtistName
 import kotlinx.android.synthetic.main.item_track_type1.view.tvTitle
 import kotlinx.android.synthetic.main.item_track_type2.view.*
-import org.koin.java.KoinJavaComponent.inject
+import javax.inject.Inject
 
 class TrackAdapter(
     @LayoutRes val layoutId: Int = R.layout.item_track_type1,
     private val springAnimationTraitStatus: Boolean
 ) : TarAvazListAdapter<Track, BaseViewHolder<Track, Int>, Int>(diffUtil) {
-    val imageLoadingService: ImageLoadingService by inject(ImageLoadingService::class.java)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Track, Int> =
         LayoutInflater.from(parent.context).run {
@@ -36,7 +36,7 @@ class TrackAdapter(
             itemView.apply {
                 tvTitle.text = item.title
                 tvArtistName.text = item.songWriter
-                imageLoadingService.load(ivCover, item.cover)
+                loadImage(ivCover, item.cover)
                 if (springAnimationTraitStatus)
                     implementSpringAnimationTrait()
                 btnShowMore.setOnClickListener {

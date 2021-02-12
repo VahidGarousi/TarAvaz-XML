@@ -3,18 +3,20 @@ package ir.vbile.app.taravaz.feautre.track
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazViewModel
 import ir.vbile.app.taravaz.data.Track
-import ir.vbile.app.taravaz.data.repo.TrackRepository
+import ir.vbile.app.taravaz.data.repo.SongRepository
 import ir.vbile.app.taravaz.extentions.asyncNetworkRequest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TrackVM constructor(
-    private val trackRemoteRepository: TrackRepository,
-    var sort: Int
+@HiltViewModel
+class TrackVM @Inject constructor(
+    private val songRemoteRepository: SongRepository
 ) : TarAvazViewModel() {
-
+    var sort: Int = 1
     val selectedSortTitle: MutableLiveData<Int> = MutableLiveData()
     val sortTitles = arrayOf(
         R.string.sortLatest,
@@ -33,7 +35,7 @@ class TrackVM constructor(
 
     private fun getTracks(sort: Int) {
         viewModelScope.launch {
-            trackRemoteRepository.getAll()
+            songRemoteRepository.getAll()
                 .asyncNetworkRequest()
                 .subscribe { tracks ->
                     _tracks.postValue(tracks)

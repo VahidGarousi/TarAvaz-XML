@@ -5,7 +5,7 @@ import ir.vbile.app.taravaz.common.DataFactory
 import ir.vbile.app.taravaz.data.Genre
 import ir.vbile.app.taravaz.data.repo.GenreRepository
 
-class DemoGenreRepository : GenreRepository{
+class DemoGenreRepositoryImpl : GenreRepository{
     override fun getAll(): Single<List<Genre>> {
         return Single.just(DataFactory.getAllGenres())
     }
