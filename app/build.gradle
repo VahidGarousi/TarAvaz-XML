@@ -101,4 +101,10 @@ dependencies {
     kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha03'
     implementation 'androidx.hilt:hilt-navigation-fragment:1.0.0-alpha03'
 
+
+    // ExoPlayer
+    api "com.google.android.exoplayer:exoplayer-core:2.11.8"
+    api "com.google.android.exoplayer:exoplayer-ui:2.11.8"
+    api "com.google.android.exoplayer:extension-mediasession:2.11.8"
+
 }

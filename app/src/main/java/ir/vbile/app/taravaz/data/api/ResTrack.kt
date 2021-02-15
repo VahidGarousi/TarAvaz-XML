@@ -1,11 +1,11 @@
 package ir.vbile.app.taravaz.data.api
 
 import ir.vbile.app.taravaz.common.DataFactory
-import ir.vbile.app.taravaz.data.Track
+import ir.vbile.app.taravaz.data.Song
 import java.util.*
 
 data class ResTrack(
-    val id: Int,
+    val id: String,
     val title: String,
     val lyric: String,
     val number: Int,
@@ -16,7 +16,7 @@ data class ResTrack(
     val songWriter: String,
     val cover: String
 ) {
-    fun toModel() = Track(
+    fun toModel() = Song(
         id,
         title,
         lyric,

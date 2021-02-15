@@ -6,18 +6,18 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.taravaz.R
-import ir.vbile.app.taravaz.common.EXTRA_KEY_DATA
 import ir.vbile.app.taravaz.common.TarAvazFragment
-import ir.vbile.app.taravaz.data.Track
+import ir.vbile.app.taravaz.data.Song
 import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import kotlinx.android.synthetic.main.base_track_row.view.*
 import kotlinx.android.synthetic.main.fragment_track.*
+import timber.log.Timber
 
 @AndroidEntryPoint
-class TracksFragment : TarAvazFragment<TrackVM>(
+class TracksFragment : TarAvazFragment<SongVM>(
     R.layout.fragment_track,
-    TrackVM::class
-) , ItemEventListener<Track,Int>{
+    SongVM::class
+) , ItemEventListener<Song,Int>{
 
 //    val vm: TrackVM by viewModel {
 //        parametersOf(
@@ -45,6 +45,9 @@ class TracksFragment : TarAvazFragment<TrackVM>(
             dialog.show()
         }
         vm.tracks.observe(viewLifecycleOwner) {
+           Timber.i("")
+        }
+        vm.tracks.observe(viewLifecycleOwner){
             rowEditorSuggestion.submitList(it)
             val list = it.toMutableList()
             list.addAll(it)
@@ -54,12 +57,12 @@ class TracksFragment : TarAvazFragment<TrackVM>(
         }
     }
 
-    override fun onClick(item: Track, position: Int) {
+    override fun onClick(item: Song, position: Int) {
         val action = TracksFragmentDirections.actionTrackFragmentToPlayerFragment(item)
         findNavController().navigate(action)
     }
 
-    override fun onLongClick(item: Track, position: Int) {
+    override fun onLongClick(item: Song, position: Int) {
         TODO("Not yet implemented")
     }
 }

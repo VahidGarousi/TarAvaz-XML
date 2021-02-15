@@ -109,6 +109,11 @@ abstract class TarAvazActivity : AppCompatActivity(), TarAvazView {
     override val viewContext: Context?
         get() = this
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        window.decorView.layoutDirection = View.LAYOUT_DIRECTION_RTL
+    }
+
 }
 
 abstract class TarAvazViewModel : ViewModel() {

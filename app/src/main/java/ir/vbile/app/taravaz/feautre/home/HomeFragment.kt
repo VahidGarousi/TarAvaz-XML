@@ -5,6 +5,8 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import androidx.core.os.HandlerCompat
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -14,18 +16,20 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazFragment
-import ir.vbile.app.taravaz.data.Track
+import ir.vbile.app.taravaz.data.Song
+import ir.vbile.app.taravaz.feautre.main.MainVM
 import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import kotlinx.android.synthetic.main.base_track_row.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import timber.log.Timber
 import kotlin.math.abs
 
 @AndroidEntryPoint
 class HomeFragment : TarAvazFragment<HomeVM>(
     R.layout.fragment_home,
     HomeVM::class
-), ItemEventListener<Track, Int> {
-//    val vm: HomeVM by viewModel()
+), ItemEventListener<Song, Int> {
+    private val mainViewModel: MainVM by viewModels()
     lateinit var bannerSliderAdapter: BannerSliderAdapter
     val sliderHandler: Handler = HandlerCompat.createAsync(Looper.getMainLooper())
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -78,6 +82,9 @@ class HomeFragment : TarAvazFragment<HomeVM>(
     }
 
     private fun subscribeToObservers() {
+        mainViewModel.mediaItems.observe(viewLifecycleOwner){
+            Timber.i("")
+        }
         vm.banners.observe(viewLifecycleOwner) {
             bannerSliderAdapter = BannerSliderAdapter(this, bannerSlider, it.toMutableList())
             bannerSlider.apply {
@@ -100,12 +107,12 @@ class HomeFragment : TarAvazFragment<HomeVM>(
         }
     }
 
-    override fun onClick(item: Track, position: Int) {
+    override fun onClick(item: Song, position: Int) {
         val action = HomeFragmentDirections.actionHomeFragmentToPlayerFragment(item)
         findNavController().navigate(action)
     }
 
-    override fun onLongClick(item: Track, position: Int) {
+    override fun onLongClick(item: Song, position: Int) {
         toast("آیتم ${item.songWriter} انتخاب شد")
     }
 }

@@ -33,8 +33,8 @@
         android:name="ir.vbile.app.taravaz.feautre.player.PlayerFragment"
         android:label="PlayerFragment" >
         <argument
-            android:name="track"
-            app:argType="ir.vbile.app.taravaz.data.Track"
+            android:name="song"
+            app:argType="ir.vbile.app.taravaz.data.Song"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>

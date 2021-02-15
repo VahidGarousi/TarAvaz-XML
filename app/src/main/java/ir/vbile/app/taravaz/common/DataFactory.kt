@@ -15,9 +15,9 @@ object DataFactory {
         )
     )
 
-    fun getAllTracks(): List<Track> = listOf(
-        Track(
-            1,
+    fun getAllTracks(): List<Song> = listOf(
+        Song(
+            1.toString(),
             App.appContext.getString(R.string.gole_maryam_title),
             App.appContext.getString(R.string.gole_maryam_lyric),
             1,
@@ -28,8 +28,8 @@ object DataFactory {
             App.appContext.getString(R.string.reza_bahram),
             "http://tabamusic.com/wp-content/uploads/2020/11/Reza-Bahram-Gole-Maryam.jpg"
         ,getSuggestedArtist()[0]),
-        Track(
-            2,
+        Song(
+            2.toString(),
             "شهرزاد",
             "بگو چگونه بگذرم از آن نگاه مشرقی\n" +
                     "نیامدی بگو چرا رسیده وقت عاشقی\n" +
@@ -61,8 +61,8 @@ object DataFactory {
             "حجت اشرف زاده",
             "https://lh3.googleusercontent.com/proxy/gvNndGk42p1hl7Q3GJKO2PesttPLyFnBkiYY7tA69Tl8KV4vecTOSvcb-3PMzEluvfn-nz3BAE_hjBM5pG5aJpLcmvqLzH_9T5vKx2z0c4ximR_xWPYuA7NT5cNZAgRMmhxwDjZg",
             getSuggestedArtist()[3]),
-        Track(
-            3,
+        Song(
+            3.toString(),
             "منو تو",
             App.appContext.getString(R.string.gole_maryam_lyric),
             1,
@@ -73,8 +73,8 @@ object DataFactory {
             "محسن ابراهیم زاده",
             "https://upmusics.com/wp-content/uploads/2019/01/450.jpg"
         ,getSuggestedArtist()[1]),
-        Track(
-            4,
+        Song(
+            4.toString(),
             "بیا پیشم",
             "یه دریا و دوتا دل آخ یه آتیش\n" +
                     "\n" +
@@ -129,8 +129,8 @@ object DataFactory {
             "سینا درخشنده",
             "https://sedabaran.ir/wp-content/webp-express/webp-images/uploads/2021/01/sina_derakhshande_bia_pisham.jpg.webp"
         ,getSuggestedArtist()[2]),
-        Track(
-            5,
+        Song(
+            5.toString(),
             "آواره",
             "",
             1,

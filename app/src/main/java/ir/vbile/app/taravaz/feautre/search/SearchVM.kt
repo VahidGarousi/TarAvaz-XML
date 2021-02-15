@@ -8,7 +8,7 @@ import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazViewModel
 import ir.vbile.app.taravaz.data.Album
 import ir.vbile.app.taravaz.data.Artist
-import ir.vbile.app.taravaz.data.Track
+import ir.vbile.app.taravaz.data.Song
 import ir.vbile.app.taravaz.data.repo.AlbumRepository
 import ir.vbile.app.taravaz.data.repo.ArtistRepository
 import ir.vbile.app.taravaz.data.repo.SongRepository
@@ -40,8 +40,8 @@ class SearchVM @Inject constructor(
     val suggestedAlbum: LiveData<List<Album>> = _suggestedAlbum
 
 
-    private val _suggestedTracks: MutableLiveData<List<Track>> = MutableLiveData()
-    val suggestedTracks: LiveData<List<Track>> = _suggestedTracks
+    private val _suggestedTracks: MutableLiveData<List<Song>> = MutableLiveData()
+    val suggestedTracks: LiveData<List<Song>> = _suggestedTracks
 
 
 

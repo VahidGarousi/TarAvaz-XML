@@ -8,25 +8,18 @@ import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazFragment
-import ir.vbile.app.taravaz.data.Track
-import ir.vbile.app.taravaz.feautre.track.TrackVM
+import ir.vbile.app.taravaz.data.Song
+import ir.vbile.app.taravaz.feautre.track.SongVM
 import ir.vbile.app.taravaz.services.ImageLoadingService
 import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import kotlinx.android.synthetic.main.fragment_artist.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ArtistFragment : TarAvazFragment<TrackVM>(
+class ArtistFragment : TarAvazFragment<ArtistVM>(
     R.layout.fragment_artist,
-    TrackVM::class
-), ItemEventListener<Track, Int> {
-    //    val vm: TrackVM by viewModel {
-//        parametersOf(
-//            requireActivity().intent.getStringExtra(
-//                EXTRA_KEY_DATA
-//            ) ?: 1
-//        )
-//    }
+    ArtistVM::class
+), ItemEventListener<Song, Int> {
     @Inject
     lateinit var imageLoadingService: ImageLoadingService
     override fun getViewLifecycleOwner(): LifecycleOwner = parentFragment ?: this
@@ -40,10 +33,10 @@ class ArtistFragment : TarAvazFragment<TrackVM>(
             imageLoadingService.load(ivArtistBackground, it.image)
         }
         rowTracks.setOnMoreEventListener {
-            longToast(it.trackAddress)
+            longToast(it.songUrl)
         }
         rowTracks.setOnItemEventListener(this)
-        vm.tracks.observe(viewLifecycleOwner) {
+        vm.songs.observe(viewLifecycleOwner) {
             rowTracks.submitList(it)
         }
         btnTracks.setOnClickListener {
@@ -54,12 +47,12 @@ class ArtistFragment : TarAvazFragment<TrackVM>(
         }
     }
 
-    override fun onClick(item: Track, position: Int) {
+    override fun onClick(item: Song, position: Int) {
         val action = ArtistFragmentDirections.actionArtistFragmentToPlayerFragment(item)
         findNavController().navigate(action)
     }
 
-    override fun onLongClick(item: Track, position: Int) {
+    override fun onLongClick(item: Song, position: Int) {
         longToast(item.title)
     }
 

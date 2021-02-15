@@ -1,8 +1,8 @@
 package ir.vbile.app.taravaz.data.repo.source
 
 import io.reactivex.Single
-import ir.vbile.app.taravaz.data.Track
+import ir.vbile.app.taravaz.data.Song
 
 interface SongDataSource {
-    fun getAll() : Single<List<Track>>
+    fun getAll() : Single<List<Song>>
 }

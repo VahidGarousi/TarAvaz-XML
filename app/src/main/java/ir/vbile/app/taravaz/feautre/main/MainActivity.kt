@@ -1,6 +1,8 @@
 package ir.vbile.app.taravaz.feautre.main
 
 import android.os.Bundle
+import android.support.v4.media.session.PlaybackStateCompat
+import androidx.activity.viewModels
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -8,13 +10,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazActivity
 import ir.vbile.app.taravaz.common.setupWithNavController
+import ir.vbile.app.taravaz.data.Song
 import ir.vbile.app.taravaz.extentions.margin
 import ir.vbile.app.taravaz.extentions.setVisibleOrGone
 import kotlinx.android.synthetic.main.activity_main.*
+
 @AndroidEntryPoint
 class MainActivity : TarAvazActivity() {
     private var currentNavController: LiveData<NavController>? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -62,6 +65,7 @@ class MainActivity : TarAvazActivity() {
         })
         currentNavController = controller
     }
+
     private fun setUpToolbar(navController: NavController?) {
         navController?.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
@@ -130,7 +134,8 @@ class MainActivity : TarAvazActivity() {
                     }
                 }
                 R.id.artistFragment,
-                R.id.playerFragment, -> {
+                R.id.playerFragment,
+                -> {
                     runOnUiThread {
                         navHostContainer.margin(
                             top = 56f,
