@@ -2,6 +2,7 @@ package ir.vbile.app.taravaz.exoplayer
 
 
 import android.app.PendingIntent
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.MediaDescriptionCompat
@@ -14,8 +15,11 @@ import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.ext.mediasession.TimelineQueueNavigator
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import dagger.hilt.android.AndroidEntryPoint
+import ir.vbile.app.taravaz.common.Constants.ACTION_CHANGE_ARTIST_ID
+import ir.vbile.app.taravaz.common.Constants.ACTION_STOP_SERVICE
 import ir.vbile.app.taravaz.common.Constants.MEDIA_ROOT_ID
 import ir.vbile.app.taravaz.common.Constants.NETWORK_ERROR
+import ir.vbile.app.taravaz.common.EXTRA_KEY_ID
 import ir.vbile.app.taravaz.exoplayer.callbacks.MusicPlaybackPrepare
 import ir.vbile.app.taravaz.exoplayer.callbacks.MusicPlayerEventListener
 import ir.vbile.app.taravaz.exoplayer.callbacks.MusicPlayerNotificationListener
@@ -34,7 +38,7 @@ class MusicService : MediaBrowserServiceCompat() {
     lateinit var exoPlayer: SimpleExoPlayer
 
     @Inject
-    lateinit var firebaseMusicSource: TarAvazMusicSource
+    lateinit var tarAvazMusicSource: TarAvazMusicSource
 
     private lateinit var musicNotificationManager: MusicNotificationManager
 
@@ -60,7 +64,7 @@ class MusicService : MediaBrowserServiceCompat() {
         super.onCreate()
 
         serviceScope.launch {
-            firebaseMusicSource.fetchMediaData()
+            tarAvazMusicSource.fetchMediaData(1)
         }
         val activityIntent = packageManager?.getLaunchIntentForPackage(packageName)?.let {
             PendingIntent.getActivity(this, 0, it, 0)
@@ -81,10 +85,10 @@ class MusicService : MediaBrowserServiceCompat() {
             curSongDuration = exoPlayer.contentDuration
         }
 
-        val musicPlaybackPlayer = MusicPlaybackPrepare(firebaseMusicSource) {
+        val musicPlaybackPlayer = MusicPlaybackPrepare(tarAvazMusicSource) {
             currentPlayingSong = it
             preparePlayer(
-                firebaseMusicSource.songs,
+                tarAvazMusicSource.songs,
                 it,
                 true
             )
@@ -99,9 +103,9 @@ class MusicService : MediaBrowserServiceCompat() {
         musicNotificationManager.showNotification(exoPlayer)
     }
 
-    private inner class MusicQueueNavigator() : TimelineQueueNavigator(mediaSession) {
+    private inner class MusicQueueNavigator : TimelineQueueNavigator(mediaSession) {
         override fun getMediaDescription(player: Player, windowIndex: Int): MediaDescriptionCompat {
-            return firebaseMusicSource.songs[windowIndex].description
+            return tarAvazMusicSource.songs[windowIndex].description
         }
     }
 
@@ -111,7 +115,7 @@ class MusicService : MediaBrowserServiceCompat() {
         playNow: Boolean
     ) {
         val currentSongIndex = if (currentPlayingSong == null) 0 else songs.indexOf(itemToPlay)
-        exoPlayer.prepare(firebaseMusicSource.asMediaSource(dataSourceFactory))
+        exoPlayer.prepare(tarAvazMusicSource.asMediaSource(dataSourceFactory))
         exoPlayer.seekTo(currentSongIndex, 0L)
         exoPlayer.playWhenReady = playNow
     }
@@ -127,7 +131,7 @@ class MusicService : MediaBrowserServiceCompat() {
         clientPackageName: String,
         clientUid: Int,
         rootHints: Bundle?
-    ): BrowserRoot? {
+    ): BrowserRoot {
         return BrowserRoot(MEDIA_ROOT_ID, null)
     }
 
@@ -137,13 +141,13 @@ class MusicService : MediaBrowserServiceCompat() {
     ) {
         when (parentId) {
             MEDIA_ROOT_ID -> {
-                val resultsSent = firebaseMusicSource.whenReady { isInitialized ->
+                val resultsSent = tarAvazMusicSource.whenReady { isInitialized ->
                     if (isInitialized) {
-                        result.sendResult(firebaseMusicSource.asMediaItems())
-                        if (!isPlayerInitialized && firebaseMusicSource.songs.isNotEmpty()) {
+                        result.sendResult(tarAvazMusicSource.asMediaItems())
+                        if (!isPlayerInitialized && tarAvazMusicSource.songs.isNotEmpty()) {
                             preparePlayer(
-                                firebaseMusicSource.songs,
-                                firebaseMusicSource.songs[0],
+                                tarAvazMusicSource.songs,
+                                tarAvazMusicSource.songs[0],
                                 false
                             )
                             isPlayerInitialized = true
@@ -160,4 +164,26 @@ class MusicService : MediaBrowserServiceCompat() {
         }
     }
 
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        intent?.let {
+            when (it.action) {
+                ACTION_CHANGE_ARTIST_ID -> {
+                    val artistId = intent.getIntExtra(EXTRA_KEY_ID, 0)
+                    serviceScope.launch {
+                        tarAvazMusicSource.fetchMediaData(artistId)
+                    }
+                }
+                ACTION_STOP_SERVICE -> {
+                    killService()
+                }
+                else -> Unit
+            }
+        }
+        return super.onStartCommand(intent, flags, startId)
+    }
+
+    private fun killService() {
+        stopForeground(true)
+        stopSelf()
+    }
 }

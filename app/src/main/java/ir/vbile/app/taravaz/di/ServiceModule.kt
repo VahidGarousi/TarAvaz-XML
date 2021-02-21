@@ -14,12 +14,20 @@ import dagger.hilt.android.components.ServiceComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ActivityScoped
 import dagger.hilt.android.scopes.ServiceScoped
+import ir.vbile.app.taravaz.data.repo.SongRepository
+import ir.vbile.app.taravaz.exoplayer.TarAvazMusicSource
 import ir.vbile.app.taravaz.services.FrescoImageLoadingServiceImpl
 import ir.vbile.app.taravaz.services.ImageLoadingService
+import javax.inject.Singleton
 
 @Module
 @InstallIn(ServiceComponent::class)
 object  ServiceModule {
+    @Provides
+    @ServiceScoped
+    @TarAvazDataSourceServiceModule
+    fun provideTarAvazDataSource(songRepository: SongRepository) =
+        TarAvazMusicSource(songRepository)
     @Provides
     @ServiceScoped
     fun provideAudioAttributes() = AudioAttributes.Builder()

@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 @Parcelize
-data class Song(
+data class Track(
     val mediaId: String,
     val title: String,
     val lyric: String,

@@ -4,12 +4,12 @@ import android.support.v4.media.MediaMetadataCompat
 import ir.vbile.app.taravaz.App
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.DataFactory
-import ir.vbile.app.taravaz.data.Song
+import ir.vbile.app.taravaz.data.Track
 import java.util.*
 
-fun MediaMetadataCompat.toSong(): Song? {
+fun MediaMetadataCompat.toTrack(): Track? {
     return description?.let {
-        Song(
+        Track(
             mediaId = it.mediaId.toString(),
             title = it.title.toString(),
             lyric = it.subtitle.toString(),

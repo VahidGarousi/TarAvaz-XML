@@ -8,8 +8,7 @@ import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazFragment
-import ir.vbile.app.taravaz.data.Song
-import ir.vbile.app.taravaz.feautre.track.SongVM
+import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.services.ImageLoadingService
 import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import kotlinx.android.synthetic.main.fragment_artist.*
@@ -19,7 +18,7 @@ import javax.inject.Inject
 class ArtistFragment : TarAvazFragment<ArtistVM>(
     R.layout.fragment_artist,
     ArtistVM::class
-), ItemEventListener<Song, Int> {
+), ItemEventListener<Track, Int> {
     @Inject
     lateinit var imageLoadingService: ImageLoadingService
     override fun getViewLifecycleOwner(): LifecycleOwner = parentFragment ?: this
@@ -47,12 +46,16 @@ class ArtistFragment : TarAvazFragment<ArtistVM>(
         }
     }
 
-    override fun onClick(item: Song, position: Int) {
-        val action = ArtistFragmentDirections.actionArtistFragmentToPlayerFragment(item)
+    override fun subscribeToObservers() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onClick(item: Track, position: Int) {
+        val action = ArtistFragmentDirections.actionArtistFragmentToTrackFragment(item)
         findNavController().navigate(action)
     }
 
-    override fun onLongClick(item: Song, position: Int) {
+    override fun onLongClick(item: Track, position: Int) {
         longToast(item.title)
     }
 

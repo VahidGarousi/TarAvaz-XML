@@ -1,8 +1,6 @@
 package ir.vbile.app.taravaz.feautre.main
 
 import android.os.Bundle
-import android.support.v4.media.session.PlaybackStateCompat
-import androidx.activity.viewModels
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -10,7 +8,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazActivity
 import ir.vbile.app.taravaz.common.setupWithNavController
-import ir.vbile.app.taravaz.data.Song
 import ir.vbile.app.taravaz.extentions.margin
 import ir.vbile.app.taravaz.extentions.setVisibleOrGone
 import kotlinx.android.synthetic.main.activity_main.*
@@ -75,7 +72,7 @@ class MainActivity : TarAvazActivity() {
                         toolbar.showBackBtn(false)
                     }
                 }
-                R.id.trackFragment -> {
+                R.id.tracksFragment -> {
                     runOnUiThread {
                         toolbar.setTitle(getString(R.string.track))
                         toolbar.showBackBtn(true) {
@@ -108,7 +105,7 @@ class MainActivity : TarAvazActivity() {
                         }
                     }
                 }
-                R.id.playerFragment -> {
+                R.id.trackFragment -> {
                     runOnUiThread {
                         toolbar.setTitle(getString(R.string.player))
                         toolbar.showBackBtn(true) {
@@ -134,7 +131,7 @@ class MainActivity : TarAvazActivity() {
                     }
                 }
                 R.id.artistFragment,
-                R.id.playerFragment,
+                R.id.trackFragment,
                 -> {
                     runOnUiThread {
                         navHostContainer.margin(

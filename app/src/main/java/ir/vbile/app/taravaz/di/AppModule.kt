@@ -6,9 +6,12 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import ir.vbile.app.taravaz.data.repo.SongRepository
 import ir.vbile.app.taravaz.exoplayer.MusicServiceConnection
+import ir.vbile.app.taravaz.exoplayer.TarAvazMusicSource
 import ir.vbile.app.taravaz.services.FrescoImageLoadingServiceImpl
 import ir.vbile.app.taravaz.services.ImageLoadingService
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
@@ -18,7 +21,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideMusicServiceConnection(
-        @ApplicationContext context: Context,
+        @ApplicationContext context: Context
     ) = MusicServiceConnection(context)
 
     @Provides
@@ -27,3 +30,7 @@ object AppModule {
         impl: FrescoImageLoadingServiceImpl
     ): ImageLoadingService = impl
 }
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class TarAvazDataSourceServiceModule

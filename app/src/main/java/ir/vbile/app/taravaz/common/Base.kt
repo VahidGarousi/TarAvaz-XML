@@ -90,6 +90,12 @@ abstract class TarAvazFragment<VM : TarAvazViewModel>(
             }
         }
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        subscribeToObservers()
+    }
+    abstract fun subscribeToObservers()
 }
 
 abstract class TarAvazActivity : AppCompatActivity(), TarAvazView {

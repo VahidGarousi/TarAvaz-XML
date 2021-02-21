@@ -25,7 +25,9 @@ class ArtistsFragment : TarAvazFragment<ArtistVM>(
             rowArtists.submitList(it)
         }
     }
-
+    override fun subscribeToObservers() {
+        TODO("Not yet implemented")
+    }
     override fun onClick(item: Artist, position: Int) {
         val action = ArtistsFragmentDirections.actionArtistsFragmentToArtistFragment(item)
         findNavController().navigate(action)

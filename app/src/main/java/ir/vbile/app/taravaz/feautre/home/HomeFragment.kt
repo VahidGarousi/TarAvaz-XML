@@ -5,7 +5,6 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import androidx.core.os.HandlerCompat
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -16,25 +15,23 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazFragment
-import ir.vbile.app.taravaz.data.Song
+import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.feautre.main.MainVM
 import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import kotlinx.android.synthetic.main.base_track_row.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import timber.log.Timber
 import kotlin.math.abs
 
 @AndroidEntryPoint
 class HomeFragment : TarAvazFragment<HomeVM>(
     R.layout.fragment_home,
     HomeVM::class
-), ItemEventListener<Song, Int> {
+), ItemEventListener<Track, Int> {
     private val mainViewModel: MainVM by viewModels()
     lateinit var bannerSliderAdapter: BannerSliderAdapter
     val sliderHandler: Handler = HandlerCompat.createAsync(Looper.getMainLooper())
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        subscribeToObservers()
         setUpSlider()
         rowNewest.btnViewAll.setOnClickListener {
             longToast("مشاهده همه")
@@ -81,9 +78,10 @@ class HomeFragment : TarAvazFragment<HomeVM>(
         sliderHandler.postDelayed(sliderRunnable, 3000)
     }
 
-    private fun subscribeToObservers() {
-        mainViewModel.mediaItems.observe(viewLifecycleOwner){
-            Timber.i("")
+    override fun subscribeToObservers() {
+        vm.tracks.observe(viewLifecycleOwner){
+            rowNewest.submitList(it)
+            rowPopular.submitList(it)
         }
         vm.banners.observe(viewLifecycleOwner) {
             bannerSliderAdapter = BannerSliderAdapter(this, bannerSlider, it.toMutableList())
@@ -101,18 +99,14 @@ class HomeFragment : TarAvazFragment<HomeVM>(
             }
             bannerSlider.currentItem = 1
         }
-        vm.tracks.observe(viewLifecycleOwner) {
-            rowNewest.submitList(it)
-            rowPopular.submitList(it)
-        }
     }
 
-    override fun onClick(item: Song, position: Int) {
-        val action = HomeFragmentDirections.actionHomeFragmentToPlayerFragment(item)
+    override fun onClick(item: Track, position: Int) {
+        val action = HomeFragmentDirections.actionHomeFragmentToTrackFragment(item)
         findNavController().navigate(action)
     }
 
-    override fun onLongClick(item: Song, position: Int) {
+    override fun onLongClick(item: Track, position: Int) {
         toast("آیتم ${item.songWriter} انتخاب شد")
     }
 }

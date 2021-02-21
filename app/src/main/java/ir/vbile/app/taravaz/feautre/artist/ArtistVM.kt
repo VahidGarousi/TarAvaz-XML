@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.vbile.app.taravaz.common.TarAvazViewModel
 import ir.vbile.app.taravaz.data.Artist
-import ir.vbile.app.taravaz.data.Song
+import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.data.repo.ArtistRepository
 import ir.vbile.app.taravaz.data.repo.SongRepository
 import ir.vbile.app.taravaz.extentions.asyncNetworkRequest
@@ -36,8 +36,8 @@ class ArtistVM @Inject constructor(
         }
     }
 
-    private val _songs: MutableLiveData<List<Song>> = MutableLiveData()
-    val songs: LiveData<List<Song>> = _songs
+    private val _songs: MutableLiveData<List<Track>> = MutableLiveData()
+    val songs: LiveData<List<Track>> = _songs
     private fun getSongs() {
         viewModelScope.launch {
             songRepository.getAll()

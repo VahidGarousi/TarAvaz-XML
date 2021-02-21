@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import ir.vbile.app.taravaz.R
-import ir.vbile.app.taravaz.data.Song
+import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.extentions.getEnum
 import ir.vbile.app.taravaz.extentions.setVisibleOrGone
 import ir.vbile.app.taravaz.view.cusom.ItemEventListener
@@ -17,8 +17,8 @@ import kotlinx.android.synthetic.main.base_track_row.view.*
 class TrackView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
-    private lateinit var currentList: List<Song>
-    fun submitList(it: List<Song>?) {
+    private lateinit var currentList: List<Track>
+    fun submitList(it: List<Track>?) {
         it?.let {
             currentList = it
         }
@@ -69,14 +69,14 @@ class TrackView @JvmOverloads constructor(
         }
     }
 
-    private lateinit var onItemEventListener: ItemEventListener<Song, Int>
-    fun setOnItemEventListener(onItemEventListener: ItemEventListener<Song, Int>) {
+    private lateinit var onItemEventListener: ItemEventListener<Track, Int>
+    fun setOnItemEventListener(onItemEventListener: ItemEventListener<Track, Int>) {
         this.onItemEventListener = onItemEventListener
         trackAdapter.setOnItemEventListener(onItemEventListener)
     }
 
-    protected lateinit var onMoreBtnClickListener: (Song) -> Unit
-    fun setOnMoreEventListener(callback: (Song) -> Unit) {
+    protected lateinit var onMoreBtnClickListener: (Track) -> Unit
+    fun setOnMoreEventListener(callback: (Track) -> Unit) {
         this.onMoreBtnClickListener = callback
         trackAdapter.setOnMoreBtnListener(callback)
     }

@@ -7,7 +7,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazFragment
-import ir.vbile.app.taravaz.data.Song
+import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import kotlinx.android.synthetic.main.base_artist_row.view.*
 import kotlinx.android.synthetic.main.fragment_search.*
@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_search.*
 class SearchFragment : TarAvazFragment<SearchVM>(
     R.layout.fragment_search,
     SearchVM::class
-), ItemEventListener<Song, Int> {
+), ItemEventListener<Track, Int> {
 //    val vm: SearchVM by viewModel {
 //        parametersOf(
 //            requireActivity().intent.getStringExtra(
@@ -58,12 +58,15 @@ class SearchFragment : TarAvazFragment<SearchVM>(
         }
     }
 
-    override fun onClick(item: Song, position: Int) {
+    override fun subscribeToObservers() {
+        TODO("Not yet implemented")
+    }
+    override fun onClick(item: Track, position: Int) {
         val action = SearchFragmentDirections.actionSearchFragmentToPlayerFragment(item)
         findNavController().navigate(action)
     }
 
-    override fun onLongClick(item: Song, position: Int) {
+    override fun onLongClick(item: Track, position: Int) {
         TODO("Not yet implemented")
     }
 }

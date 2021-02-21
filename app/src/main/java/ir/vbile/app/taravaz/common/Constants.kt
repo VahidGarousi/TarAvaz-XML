@@ -8,4 +8,10 @@ object Constants {
     const val NETWORK_ERROR = "network_error"
 
     const val  UPDATE_PLAYER_POSITION_INTERVAL = 100L
+
+
+    const val ACTION_PAUSE_SERVICE = "ACTION_PAUSE_SERVICE"
+    const val ACTION_STOP_SERVICE = "ACTION_STOP_SERVICE"
+    const val ACTION_CHANGE_ARTIST_ID = "ACTION_CHANGE_ARTIST_ID"
+
 }

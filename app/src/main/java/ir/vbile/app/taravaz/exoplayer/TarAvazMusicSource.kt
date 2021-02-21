@@ -18,24 +18,26 @@ class TarAvazMusicSource @Inject constructor(
     private val songRepository: SongRepository
 ) {
     var songs = emptyList<MediaMetadataCompat>()
-    suspend fun fetchMediaData() = withContext(Dispatchers.IO) {
+    suspend fun fetchMediaData(artistId : Int?) = withContext(Dispatchers.IO) {
         state = STATE_INITIALIZING
-        songRepository.getAll()
-            .asyncNetworkRequest()
-            .subscribe { allSongs ->
-                songs = allSongs.map { song ->
-                    MediaMetadataCompat.Builder()
-                        .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, song.artist.name)
-                        .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, song.mediaId)
-                        .putString(MediaMetadataCompat.METADATA_KEY_TITLE, song.title)
-                        .putString(MediaMetadataCompat.METADATA_KEY_DISPLAY_SUBTITLE, song.title)
-                        .putString(MediaMetadataCompat.METADATA_KEY_DISPLAY_TITLE, song.title)
-                        .putString(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON_URI, song.cover)
-                        .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_URI, song.songUrl)
-                        .putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, song.cover)
-                        .build()
+        artistId?.let {
+            songRepository.getAll(it)
+                .asyncNetworkRequest()
+                .subscribe { allSongs ->
+                    songs = allSongs.map { song ->
+                        MediaMetadataCompat.Builder()
+                            .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, song.artist.name)
+                            .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, song.mediaId)
+                            .putString(MediaMetadataCompat.METADATA_KEY_TITLE, song.title)
+                            .putString(MediaMetadataCompat.METADATA_KEY_DISPLAY_SUBTITLE, song.title)
+                            .putString(MediaMetadataCompat.METADATA_KEY_DISPLAY_TITLE, song.title)
+                            .putString(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON_URI, song.cover)
+                            .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_URI, song.songUrl)
+                            .putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, song.cover)
+                            .build()
+                    }
                 }
-            }
+        }
         state = STATE_INITIALIZED
     }
 

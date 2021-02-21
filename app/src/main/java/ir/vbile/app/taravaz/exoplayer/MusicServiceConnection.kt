@@ -12,7 +12,6 @@ import androidx.lifecycle.MutableLiveData
 import ir.vbile.app.taravaz.common.Constants.NETWORK_ERROR
 import ir.vbile.app.taravaz.common.Event
 import ir.vbile.app.taravaz.common.Resource
-import timber.log.Timber
 
 class MusicServiceConnection(
     context: Context
@@ -57,7 +56,6 @@ class MusicServiceConnection(
     fun unsubscribe(parentId: String, callback: MediaBrowserCompat.SubscriptionCallback) {
         mediaBrowser.unsubscribe(parentId, callback)
     }
-
     private inner class MediaBrowserConnectionCallback(
         private val context: Context
     ) : MediaBrowserCompat.ConnectionCallback() {
@@ -112,7 +110,7 @@ class MusicServiceConnection(
             super.onSessionEvent(event, extras)
             when (event) {
                 NETWORK_ERROR -> _networkError.postValue(
-                     Event(
+                    Event(
                         Resource.error(
                             "Couldn't connect to the server, please check your internet connection.",
                             null
