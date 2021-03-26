@@ -195,10 +195,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:layout_constraintTop_toBottomOf="@id/linearLayout3"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
                 <ImageView
                     android:id="@+id/btnSkipPrevious"
@@ -234,7 +234,56 @@
                 app:tv_springAnimationTraitStatus="true"
                 app:tv_viewAllText="نمونه صوت ها"
                 app:tv_viewType="@layout/item_track_type2" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialogLyric"
+        style="?attr/bottomSheetStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ir.vbile.app.taravaz.view.TarAvazImageView
+                    android:id="@+id/ivCover2"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginEnd="48dp"
+                    android:layout_marginTop="48dp"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:actualImageResource="@drawable/artist"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:roundBottomLeft="true"
+                    app:roundBottomRight="true"
+                    app:roundTopLeft="true"
+                    app:roundTopRight="true"
+                    app:roundedCornerRadius="8dp"
+                    app:viewAspectRatio="1.33" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvLyrics"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/ivCover2"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_lyric" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

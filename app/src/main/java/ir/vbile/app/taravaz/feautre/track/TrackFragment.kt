@@ -6,9 +6,9 @@ import android.support.v4.media.session.PlaybackStateCompat
 import android.text.InputFilter
 import android.text.InputFilter.LengthFilter
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.Constants.ACTION_CHANGE_ARTIST_ID
@@ -17,11 +17,9 @@ import ir.vbile.app.taravaz.common.TarAvazFragment
 import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.exoplayer.MusicService
 import ir.vbile.app.taravaz.exoplayer.isPlaying
-import ir.vbile.app.taravaz.extentions.setVisibility
 import ir.vbile.app.taravaz.extentions.setVisibleOrGone
 import ir.vbile.app.taravaz.services.ImageLoadingService
 import ir.vbile.app.taravaz.view.cusom.ItemEventListener
-import kotlinx.android.synthetic.main.fragment_artist.*
 import kotlinx.android.synthetic.main.fragment_track.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -34,14 +32,17 @@ class TrackFragment : TarAvazFragment<TrackVM>(
 ), ItemEventListener<Track, Int> {
     override fun getViewModelStoreOwner(): ViewModelStoreOwner = parentFragment ?: this
     private val args by navArgs<TrackFragmentArgs>()
-
+    private val coupletAdapter = CoupletAdapter()
     @Inject
     lateinit var imageLoadingService: ImageLoadingService
     private var curPlayingSong: Track? = null
     private var shouldUpdateSeekBar = true
     private var playbackState: PlaybackStateCompat? = null
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupBottomSheet()
         args.track.let {
             curPlayingSong = it
             updateTitleAndSogImage(it)
@@ -72,11 +73,35 @@ class TrackFragment : TarAvazFragment<TrackVM>(
         }
         btnFullScreen.setOnClickListener {
             // FIXME: 3/26/2021 Fullscreen Lyric
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
         rvSamples.setOnMoreEventListener {
             longToast(it.songUrl)
         }
         rvSamples.setOnItemEventListener(this)
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        setUpCoupletAdapter()
+        btnBookmark.setOnClickListener {
+            
+        }
+    }
+
+    private fun setUpCoupletAdapter() {
+        rvLyrics.adapter = coupletAdapter
+    }
+
+    private fun setupBottomSheet() {
+        bottomSheetBehavior = BottomSheetBehavior.from(dialogLyric)
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        val callback = object : BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) = Unit
+        }
+        bottomSheetBehavior.addBottomSheetCallback(callback)
+        bottomSheetBehavior.saveFlags = BottomSheetBehavior.SAVE_ALL
     }
 
     override fun subscribeToObservers() {
@@ -102,6 +127,9 @@ class TrackFragment : TarAvazFragment<TrackVM>(
             playbackState = it
             btnPlayOrPause.setImageResource(if (playbackState?.isPlaying == true) R.drawable.ic_pause else R.drawable.ic_play)
             seekBar.progress = it?.position?.toInt() ?: 0
+        }
+        vm.couplets.observe(viewLifecycleOwner){
+            coupletAdapter.submitList(it)
         }
     }
 

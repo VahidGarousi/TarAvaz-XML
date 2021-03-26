@@ -12,6 +12,7 @@ import ir.vbile.app.taravaz.common.Constants.MEDIA_ROOT_ID
 import ir.vbile.app.taravaz.common.Constants.UPDATE_PLAYER_POSITION_INTERVAL
 import ir.vbile.app.taravaz.common.DataFactory
 import ir.vbile.app.taravaz.common.TarAvazViewModel
+import ir.vbile.app.taravaz.data.Couplet
 import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.data.repo.SongRepository
 import ir.vbile.app.taravaz.exoplayer.*
@@ -38,7 +39,7 @@ class TrackVM @Inject constructor(
     private val _tracks: MutableLiveData<List<Track>> = MutableLiveData()
     val tracks: LiveData<List<Track>> = _tracks
 
-    fun getTracks(artistId : Int, sort: Int = 1) {
+    fun getTracks(artistId: Int, sort: Int = 1) {
         viewModelScope.launch {
             songRepository.getAll(artistId)
                 .asyncNetworkRequest()
@@ -66,11 +67,18 @@ class TrackVM @Inject constructor(
     private val _curPlayerPosition = MutableLiveData<Long>()
     val curPlayerPosition: LiveData<Long> = _curPlayerPosition
 
+    private val _couplets = MutableLiveData<List<Couplet>>()
+    val couplets = _couplets
+
     init {
         getTracks(sort)
         updateCurrentPlayerPosition()
+        getCouplets()
     }
 
+    private fun getCouplets(){
+        _couplets.postValue(DataFactory.getAllCouplets())
+    }
     private fun updateCurrentPlayerPosition() {
         viewModelScope.launch {
             while (true) {
