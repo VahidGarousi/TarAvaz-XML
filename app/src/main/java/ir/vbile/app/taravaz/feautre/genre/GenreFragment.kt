@@ -19,4 +19,6 @@ class GenreFragment : TarAvazFragment<GenreVM>(
             rowGenres.submitList(it)
         }
     }
+    override fun subscribeToObservers() {
+    }
 }

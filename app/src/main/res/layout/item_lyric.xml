@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="36dp"
-    android:textAppearance="?textAppearanceHeadline6"
-    android:gravity="center"
-    android:text="شال اون شال سرخ تو" />
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvHemistich1"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:gravity="center"
+        android:textAppearance="?textAppearanceHeadline6"
+        tools:text="شال اون شال سرخ تو" />
+
+    <TextView
+        android:id="@+id/tvHemistich2"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:gravity="center"
+        android:textAppearance="?textAppearanceHeadline6"
+        tools:text="شال اون شال سرخ تو" />
+</LinearLayout>

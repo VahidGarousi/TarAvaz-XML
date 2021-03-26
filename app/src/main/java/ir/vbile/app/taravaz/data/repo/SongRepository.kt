@@ -5,4 +5,5 @@ import ir.vbile.app.taravaz.data.Track
 
 interface SongRepository {
     fun getAll(): Single<List<Track>>
+    fun getAll(artistId : Int) : Single<List<Track>>
 }

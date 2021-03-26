@@ -3,27 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/track"
-    app:startDestination="@id/trackFragment">
+    app:startDestination="@id/tracksFragment">
+
+    <fragment
+        tools:layout="@layout/fragment_tracks"
+        android:id="@+id/tracksFragment"
+        android:name="ir.vbile.app.taravaz.feautre.track.list.TracksFragment"
+        android:label="MusicFragment" >
+        <action
+            android:id="@+id/action_trackFragment_to_fragment_track"
+            app:destination="@id/trackFragment" />
+    </fragment>
 
     <fragment
         tools:layout="@layout/fragment_track"
         android:id="@+id/trackFragment"
-        android:name="ir.vbile.app.taravaz.feautre.track.TracksFragment"
+        android:name="ir.vbile.app.taravaz.feautre.track.TrackFragment"
         android:label="MusicFragment" >
-        <action
-            android:id="@+id/action_trackFragment_to_playerFragment"
-            app:destination="@id/playerFragment" />
-    </fragment>
-
-    <fragment
-        tools:layout="@layout/fragment_player"
-        android:id="@+id/playerFragment"
-        android:name="ir.vbile.app.taravaz.feautre.player.PlayerFragment"
-        android:label="PlayerFragment" >
         <argument
             android:name="track"
-            app:argType="ir.vbile.app.taravaz.data.Track"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:argType="ir.vbile.app.taravaz.data.Track" />
     </fragment>
+
 </navigation>

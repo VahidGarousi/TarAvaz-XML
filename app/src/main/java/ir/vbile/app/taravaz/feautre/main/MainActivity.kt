@@ -11,10 +11,10 @@ import ir.vbile.app.taravaz.common.setupWithNavController
 import ir.vbile.app.taravaz.extentions.margin
 import ir.vbile.app.taravaz.extentions.setVisibleOrGone
 import kotlinx.android.synthetic.main.activity_main.*
+
 @AndroidEntryPoint
 class MainActivity : TarAvazActivity() {
     private var currentNavController: LiveData<NavController>? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -62,6 +62,7 @@ class MainActivity : TarAvazActivity() {
         })
         currentNavController = controller
     }
+
     private fun setUpToolbar(navController: NavController?) {
         navController?.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
@@ -71,7 +72,7 @@ class MainActivity : TarAvazActivity() {
                         toolbar.showBackBtn(false)
                     }
                 }
-                R.id.trackFragment -> {
+                R.id.tracksFragment -> {
                     runOnUiThread {
                         toolbar.setTitle(getString(R.string.track))
                         toolbar.showBackBtn(true) {
@@ -104,7 +105,7 @@ class MainActivity : TarAvazActivity() {
                         }
                     }
                 }
-                R.id.playerFragment -> {
+                R.id.trackFragment -> {
                     runOnUiThread {
                         toolbar.setTitle(getString(R.string.player))
                         toolbar.showBackBtn(true) {
@@ -130,7 +131,8 @@ class MainActivity : TarAvazActivity() {
                     }
                 }
                 R.id.artistFragment,
-                R.id.playerFragment, -> {
+                R.id.trackFragment,
+                -> {
                     runOnUiThread {
                         navHostContainer.margin(
                             top = 56f,

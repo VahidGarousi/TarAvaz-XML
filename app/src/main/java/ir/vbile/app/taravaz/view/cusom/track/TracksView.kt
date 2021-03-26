@@ -11,10 +11,8 @@ import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.extentions.getEnum
 import ir.vbile.app.taravaz.extentions.setVisibleOrGone
-import ir.vbile.app.taravaz.services.FrescoImageLoadingServiceImpl
 import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import kotlinx.android.synthetic.main.base_track_row.view.*
-import kotlinx.android.synthetic.main.item_track_type2.view.*
 
 class TrackView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

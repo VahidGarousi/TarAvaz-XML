@@ -9,15 +9,15 @@ import java.util.*
 object DataFactory {
     fun getAllBanners(): Single<List<Banner>> = Single.just(
         listOf(
-            Banner(1, "http://project.vbile.ir/taravaz/1.png", 1, ""),
-            Banner(1, "http://project.vbile.ir/taravaz/2.png", 1, ""),
-            Banner(1, "http://project.vbile.ir/taravaz/3.png", 1, "")
+            Banner(1, "http://stage-api.taravaz.com/storage/1.png", 1, ""),
+            Banner(1, "http://stage-api.taravaz.com/storage/2.png", 1, ""),
+            Banner(1, "http://stage-api.taravaz.com/storage/3.png", 1, "")
         )
     )
 
     fun getAllTracks(): List<Track> = listOf(
         Track(
-            1,
+            1.toString(),
             App.appContext.getString(R.string.gole_maryam_title),
             App.appContext.getString(R.string.gole_maryam_lyric),
             1,
@@ -26,10 +26,11 @@ object DataFactory {
             App.appContext.getString(R.string.gole_maryam_url),
             App.appContext.getString(R.string.genre_love),
             App.appContext.getString(R.string.reza_bahram),
-            "http://tabamusic.com/wp-content/uploads/2020/11/Reza-Bahram-Gole-Maryam.jpg"
-        ,getSuggestedArtist()[0]),
+            "http://tabamusic.com/wp-content/uploads/2020/11/Reza-Bahram-Gole-Maryam.jpg",
+            getSuggestedArtist()[0]
+        ),
         Track(
-            2,
+            2.toString(),
             "شهرزاد",
             "بگو چگونه بگذرم از آن نگاه مشرقی\n" +
                     "نیامدی بگو چرا رسیده وقت عاشقی\n" +
@@ -60,9 +61,10 @@ object DataFactory {
             App.appContext.getString(R.string.genre_love),
             "حجت اشرف زاده",
             "https://lh3.googleusercontent.com/proxy/gvNndGk42p1hl7Q3GJKO2PesttPLyFnBkiYY7tA69Tl8KV4vecTOSvcb-3PMzEluvfn-nz3BAE_hjBM5pG5aJpLcmvqLzH_9T5vKx2z0c4ximR_xWPYuA7NT5cNZAgRMmhxwDjZg",
-            getSuggestedArtist()[3]),
+            getSuggestedArtist()[3]
+        ),
         Track(
-            3,
+            3.toString(),
             "منو تو",
             App.appContext.getString(R.string.gole_maryam_lyric),
             1,
@@ -71,10 +73,10 @@ object DataFactory {
             "https://sv.blogmusic.ir/myahang/Mohsen-Ebrahimzadeh-Mano-To-320.mp3",
             App.appContext.getString(R.string.genre_love),
             "محسن ابراهیم زاده",
-            "https://upmusics.com/wp-content/uploads/2019/01/450.jpg"
-        ,getSuggestedArtist()[1]),
+            "https://upmusics.com/wp-content/uploads/2019/01/450.jpg", getSuggestedArtist()[1]
+        ),
         Track(
-            4,
+            4.toString(),
             "بیا پیشم",
             "یه دریا و دوتا دل آخ یه آتیش\n" +
                     "\n" +
@@ -127,10 +129,11 @@ object DataFactory {
             "https://dl.sedabaran.ir/1399/10/sina_derakhshande_bia_pisham.mp3",
             App.appContext.getString(R.string.genre_love),
             "سینا درخشنده",
-            "https://sedabaran.ir/wp-content/webp-express/webp-images/uploads/2021/01/sina_derakhshande_bia_pisham.jpg.webp"
-        ,getSuggestedArtist()[2]),
+            "https://sedabaran.ir/wp-content/webp-express/webp-images/uploads/2021/01/sina_derakhshande_bia_pisham.jpg.webp",
+            getSuggestedArtist()[2]
+        ),
         Track(
-            5,
+            5.toString(),
             "آواره",
             "",
             1,
@@ -139,8 +142,9 @@ object DataFactory {
             App.appContext.getString(R.string.gole_maryam_url),
             App.appContext.getString(R.string.genre_love),
             "راغب",
-            "https://sedabaran.ir/wp-content/webp-express/webp-images/uploads/2021/01/ragheb_avareh.jpg.webp"
-        ,getSuggestedArtist()[3])
+            "https://sedabaran.ir/wp-content/webp-express/webp-images/uploads/2021/01/ragheb_avareh.jpg.webp",
+            getSuggestedArtist()[3]
+        )
     )
 
     fun getSuggestedArtist(): List<Artist> = listOf(
@@ -277,5 +281,21 @@ object DataFactory {
         Genre(24, "پاپ", "", 603),
         Genre(25, "پاپ", "", 603),
         Genre(26, "پاپ", "", 603),
+    )
+
+    fun getAllCouplets(): List<Couplet> = listOf(
+        Couplet(Pair(Hemistich("شال اون شال سرخ تو", 1), Hemistich("موجُ موج موی تو", 1)), 1),
+        Couplet(Pair(Hemistich("شال اون شال سرخ تو", 1), Hemistich("موجُ موج موی تو", 1)), 1),
+        Couplet(Pair(Hemistich("شال اون شال سرخ تو", 1), Hemistich("موجُ موج موی تو", 1)), 1),
+        Couplet(Pair(Hemistich("شال اون شال سرخ تو", 1), Hemistich("موجُ موج موی تو", 1)), 1),
+        Couplet(Pair(Hemistich("شال اون شال سرخ تو", 1), Hemistich("موجُ موج موی تو", 1)), 1),
+        Couplet(Pair(Hemistich("شال اون شال سرخ تو", 1), Hemistich("موجُ موج موی تو", 1)), 1),
+        Couplet(Pair(Hemistich("شال اون شال سرخ تو", 1), Hemistich("موجُ موج موی تو", 1)), 1),
+        Couplet(Pair(Hemistich("شال اون شال سرخ تو", 1), Hemistich("موجُ موج موی تو", 1)), 1),
+        Couplet(Pair(Hemistich("شال اون شال سرخ تو", 1), Hemistich("موجُ موج موی تو", 1)), 1),
+        Couplet(Pair(Hemistich("شال اون شال سرخ تو", 1), Hemistich("موجُ موج موی تو", 1)), 1),
+        Couplet(Pair(Hemistich("شال اون شال سرخ تو", 1), Hemistich("موجُ موج موی تو", 1)), 1),
+        Couplet(Pair(Hemistich("شال اون شال سرخ تو", 1), Hemistich("موجُ موج موی تو", 1)), 1),
+        Couplet(Pair(Hemistich("شال اون شال سرخ تو", 1), Hemistich("موجُ موج موی تو", 1)), 1)
     )
 }

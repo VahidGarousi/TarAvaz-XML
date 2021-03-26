@@ -1,70 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nsvTrack"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <FrameLayout
+                android:id="@+id/frameLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
-
-                <EditText
-                    android:id="@+id/etKeyword"
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/background_et_search"
-                    android:hint="@string/value_search"
-                    android:inputType="text"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="16dp"
-                    android:textAlignment="viewStart"
-                    android:textColor="?colorOnSurface"
-                    android:textColorHint="?android:textColorSecondary"
-                    android:textSize="15sp" />
+                android:layout_height="56dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/btnFullScreen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_fullscreen" />
+
+                <ImageView
+                    android:id="@+id/btnBookmark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|center_vertical"
-                    android:layout_marginEnd="38dp"
+                    android:layout_marginEnd="16dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:srcCompat="@drawable/ic_search" />
+                    android:padding="16dp"
+                    android:src="@drawable/ic_bookmark" />
             </FrameLayout>
 
-            <ir.vbile.app.taravaz.view.cusom.track.TrackView
-                android:id="@+id/rowEditorSuggestion"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:tv_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:tv_orientation="horizontal"
-                app:tv_rowTitle="@string/editor_suggestion"
-                app:tv_viewType="@layout/item_track_type1" />
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/background_player_screen_image"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
+
+                <FrameLayout
+                    android:id="@+id/flImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="36dp">
+
+                    <ir.vbile.app.taravaz.view.TarAvazImageView
+                        android:id="@+id/ivCover"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:actualImageResource="@drawable/artist"
+                        app:viewAspectRatio="1" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/rvLyric"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLength="75"
+                    android:maxLines="2"
+                    android:minLines="2"
+                    android:text="@string/reza_bahram"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="56dp"
+                        android:layout_height="match_parent"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="16dp"
+                        app:srcCompat="@drawable/ic_send" />
+
+                    <CheckBox
+                        android:id="@+id/btnDisLike"
+                        style="@style/LikeButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="۲۳-"
+                        app:drawableEndCompat="@drawable/ic_dislike" />
+
+                    <CheckBox
+                        android:id="@+id/btnLike"
+                        style="@style/LikeButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="۲۳" />
+
+                    <ir.vbile.app.taravaz.view.cusom.ZoomView
+                        android:id="@+id/zoomView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvSongName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/song_name"
+                        android:textAppearance="?textAppearanceBody1"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvArtistName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/reza_bahram"
+                        android:textAppearance="?textAppearanceBody2"
+                        android:textColor="#8889A0"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvCurTime"
+                        android:layout_width="56dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:textAppearance="?textAppearanceBody1"
+                        tools:text="۰۵:۲۳" />
+
+                    <SeekBar
+                        android:id="@+id/seekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="60dp"
+                        android:layout_marginEnd="60dp" />
+
+                    <TextView
+                        android:id="@+id/tvSongDuration"
+                        android:layout_width="56dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:gravity="center_vertical"
+                        android:textAppearance="?textAppearanceBody1"
+                        tools:text="۰۰:۲۳" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout3">
+
+                <ImageView
+                    android:id="@+id/btnSkipPrevious"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_next" />
+
+                <ImageView
+                    android:id="@+id/btnPlayOrPause"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/ic_play" />
+
+                <ImageView
+                    android:id="@+id/btnSkip"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_previous" />
+            </LinearLayout>
 
             <ir.vbile.app.taravaz.view.cusom.track.TrackView
-                android:id="@+id/rowLatest"
+                android:id="@+id/rvSamples"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                 app:tv_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:tv_orientation="vertical"
                 app:tv_rowTitle="@string/sortBy"
                 app:tv_springAnimationTraitStatus="true"
-                app:tv_viewAllText="@string/popular"
+                app:tv_viewAllText="نمونه صوت ها"
                 app:tv_viewType="@layout/item_track_type2" />
-        </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialogLyric"
+        style="?attr/bottomSheetStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ir.vbile.app.taravaz.view.TarAvazImageView
+                    android:id="@+id/ivCover2"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginEnd="48dp"
+                    android:layout_marginTop="48dp"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:actualImageResource="@drawable/artist"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:roundBottomLeft="true"
+                    app:roundBottomRight="true"
+                    app:roundTopLeft="true"
+                    app:roundTopRight="true"
+                    app:roundedCornerRadius="8dp"
+                    app:viewAspectRatio="1.33" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvLyrics"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/ivCover2"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_lyric" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

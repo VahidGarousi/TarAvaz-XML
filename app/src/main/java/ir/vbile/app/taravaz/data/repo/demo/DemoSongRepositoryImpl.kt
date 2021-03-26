@@ -11,4 +11,10 @@ class DemoSongRepositoryImpl : SongRepository {
             DataFactory.getAllTracks()
         )
     }
+
+    override fun getAll(artistId: Int): Single<List<Track>> {
+        return Single.just(
+            DataFactory.getAllTracks()
+        )
+    }
 }

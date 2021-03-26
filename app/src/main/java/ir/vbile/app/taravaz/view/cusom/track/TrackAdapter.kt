@@ -11,12 +11,10 @@ import ir.vbile.app.taravaz.common.TarAvazListAdapter
 import ir.vbile.app.taravaz.data.Track
 import ir.vbile.app.taravaz.extentions.implementSpringAnimationTrait
 import ir.vbile.app.taravaz.extentions.loadImage
-import ir.vbile.app.taravaz.services.ImageLoadingService
 import kotlinx.android.synthetic.main.item_track_type1.view.ivCover
 import kotlinx.android.synthetic.main.item_track_type1.view.tvArtistName
 import kotlinx.android.synthetic.main.item_track_type1.view.tvTitle
 import kotlinx.android.synthetic.main.item_track_type2.view.*
-import javax.inject.Inject
 
 class TrackAdapter(
     @LayoutRes val layoutId: Int = R.layout.item_track_type1,
@@ -49,10 +47,10 @@ class TrackAdapter(
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<Track>() {
             override fun areItemsTheSame(oldItem: Track, newItem: Track): Boolean =
-                oldItem.id == newItem.id
+                oldItem.mediaId == newItem.mediaId
 
             override fun areContentsTheSame(oldItem: Track, newItem: Track): Boolean =
-                oldItem.id == newItem.id
+                oldItem.mediaId == newItem.mediaId
         }
     }
 

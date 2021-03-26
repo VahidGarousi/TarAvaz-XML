@@ -5,7 +5,7 @@ import ir.vbile.app.taravaz.data.Track
 import java.util.*
 
 data class ResTrack(
-    val id: Int,
+    val id: String,
     val title: String,
     val lyric: String,
     val number: Int,

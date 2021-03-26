@@ -13,4 +13,8 @@ class SongRemoteDataSource @Inject constructor(
     override fun getAll(): Single<List<Track>> {
         return trackApi.getTracks().map { it.data.map(ResTrack::toModel) }
     }
+
+    override fun getAll(artistId: Int): Single<List<Track>> {
+        return trackApi.getTracks(artistId).map { it.data.map(ResTrack::toModel) }
+    }
 }

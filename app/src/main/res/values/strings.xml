@@ -56,4 +56,6 @@
     <string name="biography">بیوگرافی</string>
     <string name="pop">موسیقی پاپ</string>
     <string name="player">موزیک پلیر</string>
+    <string name="notification_channel_name">Music Channel</string>
+    <string name="notification_description">Shows the currently playing music</string>
 </resources>

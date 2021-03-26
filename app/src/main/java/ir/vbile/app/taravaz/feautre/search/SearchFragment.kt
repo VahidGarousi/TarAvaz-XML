@@ -58,12 +58,13 @@ class SearchFragment : TarAvazFragment<SearchVM>(
         }
     }
 
+    override fun subscribeToObservers() {
+    }
     override fun onClick(item: Track, position: Int) {
         val action = SearchFragmentDirections.actionSearchFragmentToPlayerFragment(item)
         findNavController().navigate(action)
     }
 
     override fun onLongClick(item: Track, position: Int) {
-        TODO("Not yet implemented")
     }
 }

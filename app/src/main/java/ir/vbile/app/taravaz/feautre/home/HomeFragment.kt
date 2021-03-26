@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import androidx.core.os.HandlerCompat
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -15,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.taravaz.R
 import ir.vbile.app.taravaz.common.TarAvazFragment
 import ir.vbile.app.taravaz.data.Track
+import ir.vbile.app.taravaz.feautre.main.MainVM
 import ir.vbile.app.taravaz.view.cusom.ItemEventListener
 import kotlinx.android.synthetic.main.base_track_row.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -25,12 +27,11 @@ class HomeFragment : TarAvazFragment<HomeVM>(
     R.layout.fragment_home,
     HomeVM::class
 ), ItemEventListener<Track, Int> {
-//    val vm: HomeVM by viewModel()
+    private val mainViewModel: MainVM by viewModels()
     lateinit var bannerSliderAdapter: BannerSliderAdapter
     val sliderHandler: Handler = HandlerCompat.createAsync(Looper.getMainLooper())
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        subscribeToObservers()
         setUpSlider()
         rowNewest.btnViewAll.setOnClickListener {
             longToast("مشاهده همه")
@@ -77,7 +78,11 @@ class HomeFragment : TarAvazFragment<HomeVM>(
         sliderHandler.postDelayed(sliderRunnable, 3000)
     }
 
-    private fun subscribeToObservers() {
+    override fun subscribeToObservers() {
+        vm.tracks.observe(viewLifecycleOwner){
+            rowNewest.submitList(it)
+            rowPopular.submitList(it)
+        }
         vm.banners.observe(viewLifecycleOwner) {
             bannerSliderAdapter = BannerSliderAdapter(this, bannerSlider, it.toMutableList())
             bannerSlider.apply {
@@ -94,14 +99,10 @@ class HomeFragment : TarAvazFragment<HomeVM>(
             }
             bannerSlider.currentItem = 1
         }
-        vm.tracks.observe(viewLifecycleOwner) {
-            rowNewest.submitList(it)
-            rowPopular.submitList(it)
-        }
     }
 
     override fun onClick(item: Track, position: Int) {
-        val action = HomeFragmentDirections.actionHomeFragmentToPlayerFragment(item)
+        val action = HomeFragmentDirections.actionHomeFragmentToTrackFragment(item)
         findNavController().navigate(action)
     }
 

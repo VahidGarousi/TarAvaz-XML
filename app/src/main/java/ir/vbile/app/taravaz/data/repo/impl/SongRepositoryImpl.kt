@@ -12,4 +12,8 @@ class SongRepositoryImpl @Inject constructor(
     override fun getAll(): Single<List<Track>> {
         return remoteSongDataSource.getAll()
     }
+
+    override fun getAll(artistId: Int): Single<List<Track>> {
+        return remoteSongDataSource.getAll(artistId)
+    }
 }

@@ -8,4 +8,9 @@ import retrofit2.http.GET
 interface TrackApi {
     @GET("banner/slider")
     fun getTracks(): Single<ArrayResponse<ResTrack>>
+
+    @GET("banner/slider")
+    fun getTracks(
+        artistId : Int
+    ): Single<ArrayResponse<ResTrack>>
 }

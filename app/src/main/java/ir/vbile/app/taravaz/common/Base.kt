@@ -90,6 +90,12 @@ abstract class TarAvazFragment<VM : TarAvazViewModel>(
             }
         }
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        subscribeToObservers()
+    }
+    abstract fun subscribeToObservers()
 }
 
 abstract class TarAvazActivity : AppCompatActivity(), TarAvazView {
@@ -108,6 +114,11 @@ abstract class TarAvazActivity : AppCompatActivity(), TarAvazView {
         }
     override val viewContext: Context?
         get() = this
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        window.decorView.layoutDirection = View.LAYOUT_DIRECTION_RTL
+    }
 
 }
 

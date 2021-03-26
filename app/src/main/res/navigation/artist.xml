@@ -22,15 +22,15 @@
             android:name="artist"
             app:argType="ir.vbile.app.taravaz.data.Artist" />
         <action
-            android:id="@+id/action_artistFragment_to_playerFragment"
-            app:destination="@id/playerFragment" />
+            android:id="@+id/action_artistFragment_to_trackFragment"
+            app:destination="@id/trackFragment" />
     </fragment>
 
     <fragment
-        tools:layout="@layout/fragment_player"
-        android:id="@+id/playerFragment"
-        android:name="ir.vbile.app.taravaz.feautre.player.PlayerFragment"
-        android:label="PlayerFragment" >
+        tools:layout="@layout/fragment_track"
+        android:id="@+id/trackFragment"
+        android:name="ir.vbile.app.taravaz.feautre.track.TrackFragment"
+        android:label="TrackFragment" >
         <argument
             android:name="track"
             app:argType="ir.vbile.app.taravaz.data.Track"
