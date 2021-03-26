@@ -9,9 +9,9 @@ import java.util.*
 object DataFactory {
     fun getAllBanners(): Single<List<Banner>> = Single.just(
         listOf(
-            Banner(1, "http://project.vbile.ir/taravaz/1.png", 1, ""),
-            Banner(1, "http://project.vbile.ir/taravaz/2.png", 1, ""),
-            Banner(1, "http://project.vbile.ir/taravaz/3.png", 1, "")
+            Banner(1, "http://stage-api.taravaz.com/storage/1.png", 1, ""),
+            Banner(1, "http://stage-api.taravaz.com/storage/2.png", 1, ""),
+            Banner(1, "http://stage-api.taravaz.com/storage/3.png", 1, "")
         )
     )
 

@@ -47,7 +47,6 @@ class ArtistFragment : TarAvazFragment<ArtistVM>(
     }
 
     override fun subscribeToObservers() {
-        TODO("Not yet implemented")
     }
 
     override fun onClick(item: Track, position: Int) {

@@ -1,57 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="16dp"
-        app:cardBackgroundColor="#0D0F44">
+        android:layout_height="match_parent">
 
-        <androidx.core.widget.NestedScrollView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/frameLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/btnFullScreen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_fullscreen" />
+
+                <ImageView
+                    android:id="@+id/btnBookmark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="16dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_bookmark" />
+            </FrameLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:id="@+id/linearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/background_player_screen_image"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout2">
 
                 <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp">
-
-                    <ImageView
-                        android:id="@+id/btnFullScreen"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start|center_vertical"
-                        android:layout_marginStart="16dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:padding="16dp"
-                        android:src="@drawable/ic_fullscreen" />
-
-                    <ImageView
-                        android:id="@+id/btnBookmark"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end|center_vertical"
-                        android:layout_marginEnd="16dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:padding="16dp"
-                        android:src="@drawable/ic_bookmark" />
-                </FrameLayout>
-
-                <LinearLayout
+                    android:id="@+id/flImageView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/background_player_screen_image"
-                    android:orientation="vertical">
+                    android:padding="36dp">
 
                     <ir.vbile.app.taravaz.view.TarAvazImageView
                         android:id="@+id/ivCover"
@@ -59,144 +68,173 @@
                         android:layout_height="wrap_content"
                         app:actualImageResource="@drawable/artist"
                         app:viewAspectRatio="1" />
+                </FrameLayout>
 
-                    <TextView
-                        android:id="@+id/rvLyric"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:gravity="center"
-                        android:textAppearance="?textAppearanceHeadline6"
-                        android:text="@string/reza_bahram"
-                        android:textColor="@color/white"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/imageView4"
-                            android:layout_width="56dp"
-                            android:layout_height="match_parent"
-                            android:background="?attr/selectableItemBackgroundBorderless"
-                            android:padding="16dp"
-                            app:srcCompat="@drawable/ic_send" />
-
-                        <CheckBox
-                            android:id="@+id/btnDisLike"
-                            style="@style/LikeButtonStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="۲۳-"
-                            app:drawableEndCompat="@drawable/ic_dislike" />
-
-                        <CheckBox
-                            android:id="@+id/btnLike"
-                            style="@style/LikeButtonStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="true"
-                            android:text="۲۳" />
-                    </LinearLayout>
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/rvLyric"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLength="75"
+                    android:maxLines="2"
+                    android:minLines="2"
+                    android:text="@string/reza_bahram"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    android:textColor="@color/white" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:gravity="center">
-
-                        <TextView
-                            android:id="@+id/tvSongName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/song_name"
-                            android:textAppearance="?textAppearanceBody1"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:id="@+id/tvArtistName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="@string/reza_bahram"
-                            android:textAppearance="?textAppearanceBody2"
-                            android:textColor="#8889A0"
-                            android:textSize="18sp" />
-                    </LinearLayout>
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/tvCurTime"
-                            android:layout_width="56dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            tools:text="۰۵:۲۳"
-                            android:textAppearance="?textAppearanceBody1" />
-
-                        <SeekBar
-                            android:id="@+id/seekBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="60dp"
-                            android:layout_marginEnd="60dp" />
-
-                        <TextView
-                            android:id="@+id/tvSongDuration"
-                            android:layout_width="56dp"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="end"
-                            android:gravity="center_vertical"
-                            tools:text="۰۰:۲۳"
-                            android:textAppearance="?textAppearanceBody1" />
-                    </FrameLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_height="56dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/btnSkipPrevious"
+                        android:id="@+id/imageView4"
                         android:layout_width="56dp"
-                        android:layout_height="56dp"
+                        android:layout_height="match_parent"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:padding="16dp"
-                        android:src="@drawable/ic_next" />
+                        app:srcCompat="@drawable/ic_send" />
 
-                    <ImageView
-                        android:id="@+id/btnPlayOrPause"
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        app:srcCompat="@drawable/ic_play" />
+                    <CheckBox
+                        android:id="@+id/btnDisLike"
+                        style="@style/LikeButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="۲۳-"
+                        app:drawableEndCompat="@drawable/ic_dislike" />
 
-                    <ImageView
-                        android:id="@+id/btnSkip"
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:padding="16dp"
-                        android:src="@drawable/ic_previous" />
+                    <CheckBox
+                        android:id="@+id/btnLike"
+                        style="@style/LikeButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="۲۳" />
+
+                    <ir.vbile.app.taravaz.view.cusom.ZoomView
+                        android:id="@+id/zoomView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
                 </LinearLayout>
             </LinearLayout>
 
-        </androidx.core.widget.NestedScrollView>
-    </com.google.android.material.card.MaterialCardView>
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvSongName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/song_name"
+                        android:textAppearance="?textAppearanceBody1"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvArtistName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/reza_bahram"
+                        android:textAppearance="?textAppearanceBody2"
+                        android:textColor="#8889A0"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvCurTime"
+                        android:layout_width="56dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:textAppearance="?textAppearanceBody1"
+                        tools:text="۰۵:۲۳" />
+
+                    <SeekBar
+                        android:id="@+id/seekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="60dp"
+                        android:layout_marginEnd="60dp" />
+
+                    <TextView
+                        android:id="@+id/tvSongDuration"
+                        android:layout_width="56dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:gravity="center_vertical"
+                        android:textAppearance="?textAppearanceBody1"
+                        tools:text="۰۰:۲۳" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout3"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/btnSkipPrevious"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_next" />
+
+                <ImageView
+                    android:id="@+id/btnPlayOrPause"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:srcCompat="@drawable/ic_play" />
+
+                <ImageView
+                    android:id="@+id/btnSkip"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_previous" />
+            </LinearLayout>
+
+            <ir.vbile.app.taravaz.view.cusom.track.TrackView
+                android:id="@+id/rvSamples"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                app:tv_layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:tv_rowTitle="@string/sortBy"
+                app:tv_springAnimationTraitStatus="true"
+                app:tv_viewAllText="نمونه صوت ها"
+                app:tv_viewType="@layout/item_track_type2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

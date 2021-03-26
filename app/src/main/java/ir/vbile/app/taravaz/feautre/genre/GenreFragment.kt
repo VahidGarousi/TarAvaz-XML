@@ -20,6 +20,5 @@ class GenreFragment : TarAvazFragment<GenreVM>(
         }
     }
     override fun subscribeToObservers() {
-        TODO("Not yet implemented")
     }
 }

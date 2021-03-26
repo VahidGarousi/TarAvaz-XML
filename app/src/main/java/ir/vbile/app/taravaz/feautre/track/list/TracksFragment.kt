@@ -49,7 +49,6 @@ class TracksFragment : TarAvazFragment<TrackVM>(
         }
     }
     override fun subscribeToObservers() {
-        TODO("Not yet implemented")
     }
     override fun onClick(item: Track, position: Int) {
         val action = TracksFragmentDirections.actionTrackFragmentToFragmentTrack(item)
@@ -57,6 +56,5 @@ class TracksFragment : TarAvazFragment<TrackVM>(
     }
 
     override fun onLongClick(item: Track, position: Int) {
-        TODO("Not yet implemented")
     }
 }
